@@ -1,0 +1,4650 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>ClickService+ | Produtora Audiovisual</title>
+    <meta
+      name="description"
+      content="Monte seu orçamento personalizado para produção audiovisual e marketing digital."
+    />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Seu Orçamento | Produtora Audiovisual" />
+    <meta
+      property="og:description"
+      content="Monte seu orçamento personalizado para produção audiovisual e marketing digital."
+    />
+    <meta
+      property="og:image"
+      content="https://seu-orcamento.vercel.app/public/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Seu Orçamento" />
+    <meta property="og:url" content="https://seu-orcamento.vercel.app/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Seu Orçamento | Produtora Audiovisual"
+    />
+    <meta
+      name="twitter:description"
+      content="Monte seu orçamento personalizado para produção audiovisual e marketing digital."
+    />
+    <meta
+      name="twitter:image"
+      content="https://seu-orcamento.vercel.app/public/og-image.jpg"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff6b35'/%3E%3C/svg%3E"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #000;
+        --bg2: #0a0a0a;
+        --bg3: #111;
+        --bg4: #1a1a1a;
+        --bg5: #252525;
+        --txt: #fff;
+        --txt2: #8e8e93;
+        --txt3: #48484a;
+        --brd: #1c1c1e;
+        --brd2: #2c2c2e;
+        --red: #ff453a;
+        --yellow: #ffd60a;
+        --green: #30d158;
+        --cyan: #64d2ff;
+        --blue: #0a84ff;
+        --purple: #bf5af2;
+        /* Cores do Sistema - Base */
+        --color-imagem: #834dfb;
+        --color-video: #f0e100;
+        --color-sistemas: #f5f3ff;
+        /* Destaque */
+        --accent: #834dfb;
+        --r-sm: 10px;
+        --r-md: 14px;
+        --r-lg: 20px;
+        --r-xl: 28px;
+        --r-full: 100px;
+      }
+      html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        min-height: 100vh;
+        line-height: 1.4;
+        padding-bottom: 130px;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--brd2);
+        border-radius: 3px;
+      }
+      .icon {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        flex-shrink: 0;
+      }
+      .icon-sm {
+        width: 16px;
+        height: 16px;
+      }
+      .icon-lg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--brd);
+      }
+      .header__title {
+        font-size: 17px;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1px;
+        letter-spacing: 0.1px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+          Roboto, sans-serif;
+        font-stretch: expanded;
+        font-feature-settings: "ss01" on;
+      }
+      .brand-logo__click {
+        font-weight: 700;
+        color: var(--txt);
+      }
+      .brand-logo__service {
+        font-weight: 300;
+        font-variation-settings: "wght" 300;
+        color: var(--txt2);
+      }
+      .header__btn {
+        width: 40px;
+        height: 40px;
+        background: var(--bg4);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--txt2);
+        cursor: pointer;
+        transition: 0.2s;
+        position: relative;
+      }
+      .header__btn:hover {
+        background: var(--bg5);
+        color: var(--txt);
+      }
+      .header__btn--filter {
+        width: auto;
+        padding: 0 16px;
+        border-radius: var(--r-full);
+        font-size: 13px;
+        font-weight: 600;
+        animation: pulseOrange 2s ease-in-out infinite;
+      }
+      .header__btn--filter::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: var(--r-full);
+        border: 2px solid var(--accent);
+        opacity: 0;
+        animation: pulseRing 2s ease-in-out infinite;
+      }
+      @keyframes pulseOrange {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(131, 77, 251, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(131, 77, 251, 0);
+        }
+      }
+      @keyframes pulseRing {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.15);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.3);
+        }
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 24px;
+        }
+      }
+
+      .tabs {
+        display: flex;
+        gap: 6px;
+        padding: 12px 0 8px;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        padding: 6px 12px;
+        background: transparent;
+        border: 1px solid var(--brd2);
+        border-radius: var(--r-full);
+        color: var(--txt2);
+        font-size: 10px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .tab:hover {
+        border-color: var(--brd2);
+        color: var(--txt);
+      }
+      .tab--active {
+        background: var(--txt);
+        border-color: var(--txt);
+        color: var(--bg) !important;
+      }
+
+      /* Search */
+      .search {
+        position: relative;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--brd2);
+      }
+      .search__input {
+        width: 100%;
+        padding: 14px 48px 14px 48px;
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-md);
+        color: var(--txt);
+        font-size: 15px;
+        font-family: inherit;
+        transition: 0.2s;
+      }
+      .search__input::placeholder {
+        color: var(--txt3);
+      }
+      .search__input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(131, 77, 251, 0.15);
+      }
+      .search__icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--txt3);
+        pointer-events: none;
+      }
+      .search__clear {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        background: var(--bg5);
+        border: none;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--txt);
+        transition: 0.2s;
+        z-index: 10;
+      }
+      .search__clear:hover {
+        background: var(--red);
+        color: #fff;
+        transform: translateY(-50%) scale(1.1);
+      }
+      .search__clear--show {
+        display: flex;
+      }
+      .search__results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg3);
+        border: 1px solid var(--brd2);
+        border-radius: var(--r-md);
+        margin-top: 8px;
+        max-height: 500px;
+        overflow-y: auto;
+        z-index: 50;
+        display: none;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      .search__results--show {
+        display: block;
+        animation: slideDown 0.2s ease-out;
+      }
+      .search__header {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--brd);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .search__count {
+        font-size: 12px;
+        color: var(--txt2);
+        font-weight: 500;
+      }
+      .search__hint {
+        font-size: 11px;
+        color: var(--txt3);
+      }
+      .search__body {
+        padding: 8px;
+      }
+      .search__empty {
+        padding: 32px 24px;
+        text-align: center;
+        color: var(--txt3);
+        font-size: 14px;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Search Cards */
+      .search__card {
+        background: var(--bg4);
+        border: 1px solid transparent;
+        border-radius: var(--r-md);
+        padding: 14px;
+        margin-bottom: 8px;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .search__card:last-child {
+        margin-bottom: 0;
+      }
+      .search__card:hover {
+        background: var(--bg5);
+        border-color: var(--brd2);
+        transform: translateX(2px);
+      }
+      .search__card--sel {
+        background: rgba(48, 209, 88, 0.08);
+        border-color: rgba(48, 209, 88, 0.3);
+      }
+      .search__card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .search__card-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+      }
+      .search__card-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--bg3);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .search__card--sel .search__card-icon {
+        background: var(--green);
+        color: var(--bg);
+      }
+      .search__card-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .search__card-name {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        color: var(--txt);
+      }
+      .search__card-cat {
+        font-size: 11px;
+        color: var(--txt3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .search__card-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 10px;
+        border-top: 1px solid var(--brd);
+      }
+      .search__card-price {
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .search__card-unit {
+        font-size: 10px;
+        color: var(--txt3);
+        background: var(--bg3);
+        padding: 3px 8px;
+        border-radius: 6px;
+        margin-left: 6px;
+      }
+      .search__card-sub {
+        font-size: 12px;
+        color: var(--green);
+        font-weight: 600;
+        margin-top: 8px;
+        text-align: right;
+      }
+
+      /* Filter Toggle */
+      .filter {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .filter__group {
+        display: inline-flex;
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-full);
+        padding: 4px;
+        position: relative;
+      }
+      .filter__option {
+        position: relative;
+        padding: 8px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--txt2);
+        background: transparent;
+        border: none;
+        border-radius: var(--r-full);
+        cursor: pointer;
+        transition: 0.2s;
+        white-space: nowrap;
+        z-index: 1;
+      }
+      .filter__option:hover {
+        color: var(--txt);
+      }
+      .filter__option--active {
+        color: #000 !important;
+        font-weight: 600;
+      }
+      .filter__bg {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        background: var(--txt);
+        border-radius: var(--r-full);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      .filter__label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--txt);
+        margin-bottom: 16px;
+      }
+      .filter__desc {
+        font-size: 13px;
+        color: var(--txt2);
+        margin-top: 16px;
+        line-height: 1.5;
+      }
+
+      /* Filter Cards - Passo 1 */
+      .filter__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 20px 10px;
+        background: var(--bg4);
+        border: 2px solid var(--brd);
+        border-radius: var(--r-md);
+        color: var(--txt2);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .filter__card:hover {
+        background: var(--bg5);
+        border-color: var(--brd2);
+        transform: translateY(-2px);
+      }
+      .filter__card--active {
+        background: rgba(131, 77, 251, 0.1);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .filter__card--active .icon {
+        color: var(--accent);
+      }
+      .filter__card .icon {
+        color: var(--txt3);
+        width: 32px;
+        height: 32px;
+      }
+
+      /* Category Cards - Passo 2 */
+      .filter__cat-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        background: var(--bg4);
+        border: 2px solid var(--brd);
+        border-radius: var(--r-md);
+        cursor: pointer;
+        transition: 0.2s;
+        text-align: left;
+      }
+      .filter__cat-card:hover {
+        background: var(--bg5);
+        border-color: var(--brd2);
+        transform: translateY(-1px);
+      }
+      .filter__cat-card--active {
+        background: rgba(131, 77, 251, 0.08);
+        border-color: var(--accent);
+      }
+      .filter__cat-card .icon-sm {
+        color: var(--txt3);
+        flex-shrink: 0;
+      }
+      .filter__cat-card--active .icon-sm {
+        color: var(--accent);
+      }
+      .filter__cat-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--txt);
+        margin-bottom: 2px;
+      }
+      .filter__cat-desc {
+        font-size: 11px;
+        color: var(--txt3);
+        line-height: 1.3;
+      }
+
+      /* Filter Tabs */
+      .filter__tabs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .filter__tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 14px 10px;
+        background: var(--bg4);
+        border: 1.5px solid var(--brd);
+        border-radius: var(--r-md);
+        color: var(--txt2);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .filter__tab:hover {
+        background: var(--bg5);
+        border-color: var(--brd2);
+        color: var(--txt);
+        transform: translateY(-2px);
+      }
+      .filter__tab--active {
+        background: rgba(131, 77, 251, 0.1);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .filter__tab span {
+        white-space: nowrap;
+      }
+
+      /* Icon colors based on filter */
+      body.filter-imagem .acc__icon .icon {
+        color: #ff9500;
+      }
+      body.filter-video .acc__icon .icon {
+        color: #34c759;
+      }
+
+      .score {
+        background: linear-gradient(145deg, #1a1410, #0f0a08);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-xl);
+        padding: 24px 20px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .score::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 30% 0%,
+          rgba(139, 90, 43, 0.12),
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+      .score__row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .score__main {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+      }
+      .score__currency {
+        font-size: 20px;
+        font-weight: 300;
+        color: var(--txt2);
+        margin-bottom: 6px;
+      }
+      .score__value {
+        font-size: clamp(56px, 12vw, 96px);
+        font-weight: 800;
+        font-stretch: expanded;
+        letter-spacing: -3px;
+        line-height: 0.85;
+        background: linear-gradient(180deg, #fff, #b0b0b0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-feature-settings: "ss01" on;
+      }
+      .score__info {
+        text-align: right;
+      }
+      .score__change {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--green);
+        margin-bottom: 2px;
+        justify-content: flex-end;
+      }
+      .score__status {
+        font-size: 12px;
+        color: var(--txt3);
+      }
+      .score__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .score__label {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .score__count {
+        font-size: 13px;
+        color: var(--txt2);
+      }
+      .spectrum {
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          #ff453a,
+          #ff6b35 20%,
+          #ffd60a 40%,
+          #30d158 60%,
+          #64d2ff 80%,
+          #0a84ff
+        );
+        border-radius: var(--r-full);
+        position: relative;
+      }
+      .spectrum__dot {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        transition: left 0.4s;
+      }
+
+      .tab-content {
+        display: none;
+      }
+      .tab-content--active {
+        display: block;
+      }
+
+      .accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 20px;
+      }
+      .acc {
+        background: var(--bg3);
+        overflow: hidden;
+      }
+      .acc:first-child {
+        border-radius: var(--r-lg) var(--r-lg) 4px 4px;
+      }
+      .acc:last-child {
+        border-radius: 4px 4px var(--r-lg) var(--r-lg);
+      }
+      .acc:only-child {
+        border-radius: var(--r-lg);
+      }
+      .acc__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .acc__head:hover {
+        background: var(--bg4);
+      }
+      .acc__left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .acc__icon {
+        width: 36px;
+        height: 36px;
+        background: var(--bg4);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--txt3);
+      }
+      .acc__title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .acc__sub {
+        font-size: 12px;
+        color: var(--txt3);
+      }
+      .acc__right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .acc__badge {
+        min-width: 22px;
+        height: 22px;
+        padding: 0 6px;
+        background: var(--accent);
+        border-radius: var(--r-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .acc__badge--empty {
+        background: var(--brd2);
+        color: var(--txt3);
+      }
+      .acc__chev {
+        color: var(--txt3);
+        transition: transform 0.3s;
+      }
+      .acc--open .acc__chev {
+        transform: rotate(180deg);
+      }
+      .acc__body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s;
+      }
+      .acc--open .acc__body {
+        max-height: 3000px;
+      }
+      .acc__inner {
+        padding: 0 16px 16px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      @media (min-width: 580px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 900px) {
+        .grid--3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .svc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px;
+        background: var(--bg4);
+        border: 1px solid transparent;
+        border-radius: var(--r-md);
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .svc:hover {
+        background: var(--bg5);
+        border-color: var(--brd2);
+      }
+      .svc--sel {
+        background: rgba(48, 209, 88, 0.08);
+        border-color: rgba(48, 209, 88, 0.3);
+      }
+      .svc--guide {
+        cursor: pointer;
+        border: none;
+        position: relative;
+        overflow: hidden;
+      }
+      .svc--guide:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+      .svc--guide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .svc--guide:hover::before {
+        opacity: 1;
+      }
+      .svc--guide-nivel1 {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .svc--guide-nivel1 > .icon {
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+
+      /* Cards coloridos do nível 1 */
+      .svc--guide-imagem {
+        background: linear-gradient(135deg, #834dfb 0%, #6b3dd9 100%);
+        color: #000;
+      }
+      .svc--guide-imagem .svc__icon {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000;
+        width: 48px;
+        height: 48px;
+      }
+      .svc--guide-imagem .svc__name {
+        font-size: 20px;
+        color: #000;
+      }
+      .svc--guide-imagem .svc__desc {
+        color: #000;
+        font-size: 14px;
+      }
+      .svc--guide-imagem .icon {
+        color: #000;
+        width: 26px;
+        height: 26px;
+      }
+
+      .svc--guide-video {
+        background: linear-gradient(135deg, #f0e100 0%, #d4c500 100%);
+        color: #000;
+      }
+      .svc--guide-video .svc__icon {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000;
+        width: 48px;
+        height: 48px;
+      }
+      .svc--guide-video .svc__name {
+        font-size: 20px;
+        color: #000;
+      }
+      .svc--guide-video .svc__desc {
+        color: #000;
+        font-size: 14px;
+      }
+      .svc--guide-video .icon {
+        color: #000;
+        width: 26px;
+        height: 26px;
+      }
+
+      .svc--guide-sistemas {
+        background: linear-gradient(135deg, #f5f3ff 0%, #e8e5ff 100%);
+        color: #000;
+      }
+      .svc--guide-sistemas .svc__icon {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000;
+        width: 48px;
+        height: 48px;
+      }
+      .svc--guide-sistemas .svc__name {
+        font-size: 20px;
+        color: #000;
+      }
+      .svc--guide-sistemas .svc__desc {
+        color: #000;
+        font-size: 14px;
+      }
+      .svc--guide-sistemas .icon {
+        color: #000;
+        width: 26px;
+        height: 26px;
+      }
+      .svc__top {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        flex: 1;
+      }
+      .svc__icon {
+        width: 38px;
+        height: 38px;
+        background: var(--bg3);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7a7a7f;
+        flex-shrink: 0;
+        transition: 0.2s;
+      }
+      .svc--sel .svc__icon {
+        background: var(--green);
+        color: var(--bg);
+      }
+      .svc__info {
+        flex: 1;
+        min-width: 0;
+      }
+      .svc__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .svc__name {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      .svc__tag {
+        display: inline-block;
+        padding: 4px 10px;
+        background: rgba(138, 43, 226, 0.15);
+        border: 1px solid rgba(138, 43, 226, 0.4);
+        border-radius: var(--r-full);
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #b57edc;
+        margin-left: 8px;
+      }
+      .svc__desc {
+        font-size: 12px;
+        color: var(--txt2);
+        line-height: 1.4;
+        font-weight: 400;
+      }
+      .svc__foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid var(--brd);
+      }
+      .svc__price {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .svc__unit {
+        font-size: 11px;
+        color: var(--txt2);
+        background: var(--bg4);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: 500;
+      }
+      .svc__qty {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: var(--bg3);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .svc__qty-btn {
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: none;
+        color: var(--txt);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.15s;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .svc__qty-btn:hover {
+        background: var(--bg5);
+        color: var(--green);
+      }
+      .svc__qty-btn:active {
+        transform: scale(0.95);
+      }
+      .svc__qty-val {
+        width: 36px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--txt);
+      }
+      .svc__toggle {
+        width: 32px;
+        height: 32px;
+        background: var(--bg3);
+        border: 2px solid var(--brd2);
+        border-radius: 8px;
+        color: var(--txt3);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+        font-size: 14px;
+      }
+      .svc__toggle:hover {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .svc__toggle--on {
+        background: var(--green);
+        border-color: var(--green);
+        color: var(--bg);
+      }
+      .svc__subtotal {
+        font-size: 12px;
+        color: var(--green);
+        font-weight: 500;
+      }
+
+      .pkg {
+        position: relative;
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-xl);
+        padding: 24px;
+        margin-bottom: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        overflow: hidden;
+      }
+      .pkg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--yellow));
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .pkg:hover {
+        border-color: var(--brd2);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      }
+      .pkg:hover::before {
+        opacity: 1;
+      }
+      .pkg--sel {
+        border-color: var(--accent);
+        background: rgba(131, 77, 251, 0.03);
+      }
+      .pkg--sel::before {
+        opacity: 1;
+      }
+      .pkg__head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .pkg__info {
+        flex: 1;
+      }
+      .pkg__badge {
+        padding: 6px 12px;
+        background: var(--bg5);
+        border: 1px solid var(--brd2);
+        border-radius: var(--r-full);
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--txt2);
+      }
+      .pkg__badge--popular {
+        background: rgba(181, 126, 220, 0.15);
+        border-color: rgba(181, 126, 220, 0.4);
+        color: #b57edc;
+      }
+      .pkg__badge--recomendado {
+        background: rgba(181, 126, 220, 0.15);
+        border-color: rgba(181, 126, 220, 0.4);
+        color: #b57edc;
+      }
+      .pkg__badge--premium {
+        background: rgba(181, 126, 220, 0.15);
+        border-color: rgba(181, 126, 220, 0.4);
+        color: #b57edc;
+      }
+      .pkg__title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        background: linear-gradient(135deg, var(--txt), var(--txt2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .pkg__sub {
+        font-size: 13px;
+        color: var(--txt2);
+      }
+      .pkg__items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 20px 0;
+        padding: 16px;
+        background: var(--bg4);
+        border-radius: var(--r-md);
+      }
+      .pkg__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--txt2);
+        line-height: 1.5;
+      }
+      .pkg__item i {
+        color: var(--accent);
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+      }
+      .pkg__foot {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-top: 16px;
+        border-top: 1px solid var(--brd2);
+      }
+      .pkg__price-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .pkg__price {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .pkg__price span {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--txt3);
+        letter-spacing: 0;
+      }
+      .pkg__save {
+        font-size: 12px;
+        color: var(--green);
+        font-weight: 600;
+        background: rgba(48, 209, 88, 0.1);
+        padding: 6px 12px;
+        border-radius: var(--r-full);
+      }
+
+      /* Guide Cards (Sistema Guiado) */
+      .guide-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 8px 0;
+      }
+      .guide-card {
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-lg);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .guide-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .guide-card:hover {
+        border-color: var(--accent);
+        transform: translateX(4px);
+      }
+      .guide-card:hover::before {
+        opacity: 1;
+      }
+      .guide-card:active {
+        transform: translateX(4px) scale(0.98);
+      }
+      .guide-card__icon {
+        width: 60px;
+        height: 60px;
+        border-radius: var(--r-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex-shrink: 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+      .guide-card__content {
+        flex: 1;
+        min-width: 0;
+      }
+      .guide-card__title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--txt);
+      }
+      .guide-card__desc {
+        font-size: 13px;
+        color: var(--txt2);
+        line-height: 1.5;
+      }
+      .guide-card__arrow {
+        color: var(--txt3);
+        transition: 0.3s;
+      }
+      .guide-card:hover .guide-card__arrow {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      .guide-level {
+        animation: slideIn 0.3s ease-out;
+      }
+      .guide-level__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--txt);
+      }
+      .guide-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg4);
+        border: 1px solid var(--brd2);
+        color: var(--txt2);
+        padding: 10px 16px;
+        border-radius: var(--r-full);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-bottom: 16px;
+      }
+      .guide-back:hover {
+        background: var(--bg5);
+        color: var(--txt);
+        border-color: var(--accent);
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Tutorial Moderno */
+      .tutorial-modern {
+        display: grid;
+        gap: 16px;
+        padding: 10px 0 20px;
+      }
+      .step-modern {
+        display: flex;
+        gap: 16px;
+        padding: 20px;
+        background: linear-gradient(145deg, #1a1410, #0f0a08);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-lg);
+        transition: 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .step-modern::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 80% 50%,
+          rgba(139, 90, 43, 0.08),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .step-modern:hover {
+        background: linear-gradient(145deg, #1f180f, #120c09);
+        transform: translateY(-2px);
+      }
+      .step-modern--highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(48, 209, 88, 0.12) 0%,
+          rgba(48, 209, 88, 0.08) 100%
+        );
+        border-color: rgba(48, 209, 88, 0.3);
+      }
+      .step-modern__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--r-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        position: relative;
+        overflow: hidden;
+        transition: 0.2s;
+      }
+      .step-modern:hover .step-modern__icon {
+        background: var(--bg4);
+      }
+      .step-modern__icon svg {
+        width: 28px;
+        height: 28px;
+        color: var(--txt2);
+        transition: 0.2s;
+      }
+      .step-modern:hover .step-modern__icon svg {
+        color: var(--green);
+      }
+      .step-modern__content {
+        flex: 1;
+        min-width: 0;
+      }
+      .step-modern__badge {
+        display: inline-block;
+        padding: 4px 10px;
+        background: var(--bg3);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-full);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--txt3);
+        margin-bottom: 8px;
+      }
+      .step-modern__title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--txt);
+        margin-bottom: 6px;
+      }
+      .step-modern__desc {
+        font-size: 13px;
+        color: var(--txt2);
+        line-height: 1.5;
+      }
+
+      .tutorial__footer-modern {
+        margin-top: 24px;
+        padding: 24px;
+        background: linear-gradient(145deg, #1a1410, #0f0a08);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-lg);
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        position: relative;
+        overflow: hidden;
+      }
+      .tutorial__footer-modern::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 20% 50%,
+          rgba(139, 90, 43, 0.1),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .tutorial__footer-modern-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--r-md);
+        background: linear-gradient(135deg, var(--green) 0%, #25a244 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 8px 24px rgba(48, 209, 88, 0.3);
+      }
+      .tutorial__footer-modern-icon svg {
+        width: 32px;
+        height: 32px;
+        color: #fff;
+      }
+      .tutorial__footer-modern-content {
+        flex: 1;
+        min-width: 0;
+      }
+      .tutorial__footer-modern-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--txt);
+        margin-bottom: 8px;
+      }
+      .tutorial__footer-modern-text {
+        font-size: 13px;
+        color: var(--txt2);
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+      .tutorial__footer-modern-badge {
+        display: inline-block;
+        padding: 8px 14px;
+        background: rgba(48, 209, 88, 0.15);
+        border: 1px solid rgba(48, 209, 88, 0.3);
+        border-radius: var(--r-full);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--green);
+      }
+
+      .bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--brd);
+        padding: 12px 16px;
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        z-index: 200;
+        transform: translateY(100%);
+        transition: transform 0.4s;
+      }
+      .bar--show {
+        transform: translateY(0);
+      }
+      .bar__inner {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      @media (min-width: 580px) {
+        .bar__inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      .bar__info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .bar__total {
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .bar__total span {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--txt3);
+      }
+      .bar__count {
+        font-size: 12px;
+        color: var(--txt2);
+      }
+      .bar__btns {
+        display: flex;
+        gap: 8px;
+      }
+      .bar__btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 12px 16px;
+        border-radius: var(--r-md);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        border: none;
+      }
+      .bar__btn--sec {
+        background: var(--bg4);
+        color: var(--txt);
+        border: 1px solid var(--brd2);
+      }
+      .bar__btn--sec:hover {
+        background: var(--bg5);
+      }
+      .bar__btn--pri {
+        background: #25d366;
+        color: #121212;
+        min-width: 140px;
+      }
+      .bar__btn--pri:hover {
+        background: #20bd5a;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      .modal--show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal__box {
+        background: var(--bg3);
+        border-radius: var(--r-xl) var(--r-xl) 0 0;
+        width: 100%;
+        max-width: 560px;
+        max-height: 85vh;
+        overflow: hidden;
+        transform: translateY(100%);
+        transition: transform 0.4s;
+        display: flex;
+        flex-direction: column;
+      }
+      .modal--show .modal__box {
+        transform: translateY(0);
+      }
+      @media (min-width: 580px) {
+        .modal__box {
+          border-radius: var(--r-xl);
+          margin: auto;
+          max-height: 80vh;
+        }
+        .modal {
+          align-items: center;
+          padding: 20px;
+        }
+      }
+      .modal__handle {
+        width: 36px;
+        height: 5px;
+        background: var(--brd2);
+        border-radius: var(--r-full);
+        margin: 10px auto;
+      }
+      .modal__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 20px 16px;
+        flex-shrink: 0;
+      }
+      .modal__title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .modal__close {
+        width: 32px;
+        height: 32px;
+        background: var(--bg4);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--txt2);
+        transition: 0.2s;
+      }
+      .modal__close:hover {
+        background: var(--bg5);
+        color: var(--txt);
+      }
+      .modal__body {
+        padding: 0 20px 20px;
+        overflow-y: auto;
+        flex: 1;
+      }
+      .modal__foot {
+        padding: 14px 20px;
+        padding-bottom: max(14px, env(safe-area-inset-bottom));
+        border-top: 1px solid var(--brd);
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      /* Summary Cards */
+      .sum-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .sum-card {
+        background: var(--bg4);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-md);
+        padding: 14px;
+        transition: 0.2s;
+      }
+      .sum-card:hover {
+        border-color: var(--brd2);
+      }
+      .sum-card--pkg {
+        border-color: var(--purple);
+        background: rgba(191, 90, 242, 0.05);
+      }
+      .sum-card__top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .sum-card__info {
+        flex: 1;
+        min-width: 0;
+      }
+      .sum-card__name {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .sum-card__cat {
+        font-size: 11px;
+        color: var(--txt3);
+      }
+      .sum-card__foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid var(--brd);
+      }
+      .sum-card__unit {
+        font-size: 12px;
+        color: var(--txt2);
+      }
+      .sum-card__subtotal {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--green);
+      }
+      .sum-card__remove {
+        width: 28px;
+        height: 28px;
+        background: var(--bg3);
+        border: 1px solid var(--brd2);
+        border-radius: 6px;
+        color: var(--txt3);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        transition: 0.2s;
+      }
+      .sum-card__remove:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+
+      .sum-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0 0;
+        margin-top: 8px;
+        border-top: 2px solid var(--brd2);
+      }
+
+      /* Toggle Switch */
+      #adminModeToggle:checked + span {
+        background: var(--green);
+      }
+      #adminModeToggle:checked + span + #toggleSlider {
+        transform: translateX(24px);
+        background: var(--txt);
+      }
+      .sum-total__label {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .sum-total__value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--green);
+      }
+
+      .form-sec {
+        margin-bottom: 20px;
+      }
+      .form-sec:last-child {
+        margin-bottom: 0;
+      }
+      .form-sec__title {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--txt3);
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--brd);
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 0;
+        gap: 10px;
+      }
+      .form-row__label {
+        font-size: 12px;
+        color: var(--txt2);
+        flex: 1;
+      }
+      .form-row__input {
+        width: 90px;
+        padding: 8px 10px;
+        background: var(--bg4);
+        border: 1px solid var(--brd);
+        border-radius: 8px;
+        color: var(--txt);
+        font-size: 13px;
+        font-weight: 500;
+        text-align: right;
+        font-family: inherit;
+      }
+      .form-row__input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .toast {
+        position: fixed;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background: var(--bg4);
+        border: 1px solid var(--green);
+        border-radius: var(--r-md);
+        padding: 12px 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 1100;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      .toast--show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .toast__icon {
+        color: var(--green);
+      }
+      .toast__msg {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .empty {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .empty__icon {
+        width: 56px;
+        height: 56px;
+        background: var(--bg4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        color: var(--txt3);
+      }
+      .empty__title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .empty__text {
+        font-size: 13px;
+        color: var(--txt3);
+      }
+
+      /* Tutorial Steps */
+      .tutorial {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .step {
+        background: var(--bg4);
+        border: 1px solid var(--brd);
+        border-radius: var(--r-lg);
+        padding: 18px;
+        transition: 0.2s;
+      }
+      .step:hover {
+        border-color: var(--brd2);
+        transform: translateX(2px);
+      }
+      .step__header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 12px;
+      }
+      .step__number {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, var(--accent), #9d6bfb);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(131, 77, 251, 0.3);
+      }
+      .step__title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--txt);
+      }
+      .step__desc {
+        font-size: 13px;
+        color: var(--txt2);
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+      .step__icon {
+        width: 100%;
+        height: 80px;
+        background: var(--bg3);
+        border-radius: var(--r-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        margin-top: 8px;
+      }
+      .step__icon svg {
+        width: 48px;
+        height: 48px;
+      }
+      .step--highlight {
+        border-color: var(--accent);
+        background: rgba(131, 77, 251, 0.05);
+      }
+      .tutorial__footer {
+        margin-top: 8px;
+        padding: 16px;
+        background: var(--bg4);
+        border-radius: var(--r-md);
+        text-align: center;
+      }
+      .tutorial__footer-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--txt);
+      }
+      .tutorial__footer-text {
+        font-size: 12px;
+        color: var(--txt2);
+        line-height: 1.6;
+      }
+      .tutorial__footer-icon {
+        margin: 16px 0;
+        color: var(--green);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <button class="header__btn" onclick="openEdit()" title="Editar valores">
+        <i data-lucide="more-horizontal" class="icon"></i>
+      </button>
+      <span class="header__title" aria-label="ClickService+">
+        <span class="brand-logo__click">Click</span>
+        <span class="brand-logo__service">Service+</span>
+      </span>
+      <div style="display: flex; gap: 8px">
+        <button class="header__btn" onclick="openHelp()" title="Como funciona?">
+          <i data-lucide="info" class="icon"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="tabs">
+        <button
+          class="tab tab--active"
+          data-tab="todos"
+          onclick="switchTab('todos')"
+        >
+          Todos
+        </button>
+        <button class="tab" data-tab="social" onclick="switchTab('social')">
+          Rede Social
+        </button>
+        <button class="tab" data-tab="mkt" onclick="switchTab('mkt')">
+          Marketing
+        </button>
+        <button class="tab" data-tab="emp" onclick="switchTab('emp')">
+          Sua Empresa
+        </button>
+        <button class="tab" data-tab="pkg" onclick="switchTab('pkg')">
+          Pacotes
+        </button>
+      </nav>
+
+      <div class="score">
+        <div class="score__row">
+          <div class="score__main">
+            <span class="score__currency">R$</span>
+            <span class="score__value" id="scoreVal">0</span>
+          </div>
+          <div class="score__info">
+            <div class="score__change" id="scoreChange">
+              <svg class="icon-sm" viewBox="0 0 24 24">
+                <path d="m22 7-8.5 8.5-5-5L2 17" />
+                <path d="M16 7h6v6" />
+              </svg>
+              Aguardando seleção
+            </div>
+            <div class="score__status" id="scoreStatus">
+              Escolha os serviços abaixo
+            </div>
+          </div>
+        </div>
+        <div class="score__meta">
+          <span class="score__label" id="scoreLabel"
+            >Selecione os serviços</span
+          >
+          <span class="score__count" id="scoreCount">0 serviços</span>
+        </div>
+        <div class="spectrum">
+          <div class="spectrum__dot" id="specDot" style="left: 3%"></div>
+        </div>
+      </div>
+
+      <!-- Buscador -->
+      <div class="search">
+        <i data-lucide="search" class="icon search__icon"></i>
+        <input
+          type="text"
+          class="search__input"
+          id="searchInput"
+          placeholder="Buscar serviços... (ex: vídeo, reels, vsl)"
+          oninput="handleSearch()"
+          onfocus="handleSearch()"
+          onkeydown="handleSearchKeydown(event)"
+        />
+        <button class="search__clear" id="searchClear" onclick="clearSearch()">
+          <i data-lucide="x" class="icon-sm"></i>
+        </button>
+        <div class="search__results" id="searchResults">
+          <div class="search__header">
+            <span class="search__count" id="searchCount"
+              >Digite para buscar</span
+            >
+            <span class="search__hint">ESC para fechar</span>
+          </div>
+          <div class="search__body" id="searchBody"></div>
+        </div>
+      </div>
+
+      <!-- TODOS -->
+      <div class="tab-content tab-content--active" id="tab-todos">
+        <!-- Nível 1: Categorias Principais -->
+        <div id="nivel1" class="grid">
+          <div
+            class="svc svc--guide svc--guide-nivel1 svc--guide-imagem"
+            onclick="showNivel2('imagem')"
+          >
+            <div class="svc__top">
+              <div class="svc__icon">
+                <i data-lucide="image" class="icon"></i>
+              </div>
+              <div class="svc__info">
+                <div class="svc__header">
+                  <span class="svc__name">Imagem</span>
+                </div>
+                <div class="svc__desc">
+                  Design gráfico, edição de fotos e criação visual
+                </div>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="icon"></i>
+          </div>
+
+          <div
+            class="svc svc--guide svc--guide-nivel1 svc--guide-video"
+            onclick="showNivel2('video')"
+          >
+            <div class="svc__top">
+              <div class="svc__icon">
+                <i data-lucide="video" class="icon"></i>
+              </div>
+              <div class="svc__info">
+                <div class="svc__header">
+                  <span class="svc__name">Vídeo</span>
+                </div>
+                <div class="svc__desc">
+                  Produção audiovisual, edição e motion design
+                </div>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="icon"></i>
+          </div>
+
+          <div
+            class="svc svc--guide svc--guide-nivel1 svc--guide-sistemas"
+            onclick="showNivel2('sistemas')"
+          >
+            <div class="svc__top">
+              <div class="svc__icon">
+                <i data-lucide="code-2" class="icon"></i>
+              </div>
+              <div class="svc__info">
+                <div class="svc__header">
+                  <span class="svc__name">Sistemas</span>
+                </div>
+                <div class="svc__desc">
+                  Desenvolvimento web, apps e soluções digitais
+                </div>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="icon"></i>
+          </div>
+        </div>
+
+        <!-- Nível 2: Subcategorias -->
+        <div id="nivel2" class="guide-level" style="display: none">
+          <button class="guide-back" onclick="backToNivel1()">
+            <i data-lucide="arrow-left" class="icon-sm"></i>
+            Voltar
+          </button>
+          <h2 class="guide-level__title" id="nivel2Title"></h2>
+          <div id="nivel2Cards" class="grid"></div>
+        </div>
+
+        <!-- Nível 3: Lista de Serviços -->
+        <div id="nivel3" class="guide-level" style="display: none">
+          <button class="guide-back" onclick="backToNivel2()">
+            <i data-lucide="arrow-left" class="icon-sm"></i>
+            Voltar
+          </button>
+          <h2 class="guide-level__title" id="nivel3Title"></h2>
+          <div id="nivel3Grid" class="grid"></div>
+        </div>
+      </div>
+
+      <!-- REDE SOCIAL -->
+      <div class="tab-content" id="tab-social">
+        <div class="accordion">
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--video">
+                  <i data-lucide="video" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Criativos para Anúncios</div>
+                  <div class="acc__sub">Vídeos para tráfego pago</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-criativos"
+                  >0</span
+                >
+                <i data-lucide="chevron-down" class="icon acc__chev"></i>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-criativos"></div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--sparkles">
+                  <i data-lucide="sparkles" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Conteúdo Orgânico</div>
+                  <div class="acc__sub">Reels, Stories e Posts</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-organico"
+                  >0</span
+                >
+                <i data-lucide="chevron-down" class="icon acc__chev"></i>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-organico"></div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--scissors">
+                  <i data-lucide="scissors" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Edição e Pós-Produção</div>
+                  <div class="acc__sub">Tratamento e finalização</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-edicao"
+                  >0</span
+                >
+                <i data-lucide="chevron-down" class="icon acc__chev"></i>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-edicao"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING -->
+      <div class="tab-content" id="tab-mkt">
+        <div class="accordion">
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--play">
+                  <i data-lucide="play-square" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">VSL - Video Sales Letter</div>
+                  <div class="acc__sub">Vídeos de vendas de alta conversão</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-vsl">0</span>
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner"><div class="grid" id="g-vsl"></div></div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--flame">
+                  <i data-lucide="flame" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Lançamentos</div>
+                  <div class="acc__sub">Estrutura para infoprodutos</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-lanc">0</span>
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner"><div class="grid" id="g-lanc"></div></div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--lightbulb">
+                  <i data-lucide="book-open" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Consultoria e Estratégia</div>
+                  <div class="acc__sub">Planejamento de conteúdo</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-consult"
+                  >0</span
+                >
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-consult"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUA EMPRESA -->
+      <div class="tab-content" id="tab-emp">
+        <div class="accordion">
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--building">
+                  <i data-lucide="building-2" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Vídeo Institucional</div>
+                  <div class="acc__sub">Apresentação da empresa</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-inst">0</span>
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner"><div class="grid" id="g-inst"></div></div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--calendar">
+                  <i data-lucide="map-pin" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Cobertura de Eventos</div>
+                  <div class="acc__sub">Registro profissional</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-evento"
+                  >0</span
+                >
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-evento"></div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon acc__icon--camera">
+                  <i data-lucide="camera" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Fotografia Corporativa</div>
+                  <div class="acc__sub">Ensaios e produtos</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-foto">0</span>
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner"><div class="grid" id="g-foto"></div></div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc__head" onclick="toggleAcc(this)">
+              <div class="acc__left">
+                <div class="acc__icon">
+                  <i data-lucide="sparkles" class="icon"></i>
+                </div>
+                <div>
+                  <div class="acc__title">Motion Design</div>
+                  <div class="acc__sub">Animações e efeitos visuais</div>
+                </div>
+              </div>
+              <div class="acc__right">
+                <span class="acc__badge acc__badge--empty" id="b-motion"
+                  >0</span
+                >
+                <svg class="icon acc__chev" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="acc__body">
+              <div class="acc__inner">
+                <div class="grid" id="g-motion"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PACOTES -->
+      <div class="tab-content" id="tab-pkg">
+        <div id="pkgContainer"></div>
+      </div>
+    </main>
+
+    <div class="bar" id="bar">
+      <div class="bar__inner">
+        <div class="bar__btns" style="width: 100%">
+          <button class="bar__btn bar__btn--sec" onclick="openSum()">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <path d="M14 2v6h6" />
+              <path d="M16 13H8" />
+              <path d="M16 17H8" />
+              <path d="M10 9H8" />
+            </svg>
+            Resumo
+          </button>
+          <button class="bar__btn bar__btn--pri" onclick="sendWpp()">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="m22 2-7 20-4-9-9-4Z" />
+              <path d="M22 2 11 13" />
+            </svg>
+            WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalSum">
+      <div class="modal__box">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Resumo do Orçamento</h2>
+          <button class="modal__close" onclick="closeModal('modalSum')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body" id="sumBody"></div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--sec"
+            style="flex: 1"
+            onclick="closeModal('modalSum')"
+          >
+            Fechar
+          </button>
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="sendWpp()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="m22 2-7 20-4-9-9-4Z" /></svg
+            >WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalPass">
+      <div class="modal__box" style="max-width: 360px">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Acesso Restrito</h2>
+          <button class="modal__close" onclick="closeModal('modalPass')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p style="font-size: 13px; color: var(--txt2); margin-bottom: 16px">
+            Digite a senha para editar os valores:
+          </p>
+          <input
+            type="password"
+            class="form-row__input"
+            id="passInput"
+            style="
+              width: 100%;
+              text-align: center;
+              font-size: 16px;
+              padding: 14px;
+            "
+            placeholder="Senha"
+            onkeypress="if (event.key === 'Enter') checkPass();"
+          />
+          <p
+            id="passError"
+            style="
+              font-size: 12px;
+              color: var(--red);
+              margin-top: 10px;
+              display: none;
+            "
+          >
+            Senha incorreta
+          </p>
+        </div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--sec"
+            style="flex: 1"
+            onclick="closeModal('modalPass')"
+          >
+            Cancelar
+          </button>
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="checkPass()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg
+            >Entrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalEdit">
+      <div class="modal__box">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Editar Valores</h2>
+          <button class="modal__close" onclick="closeModal('modalEdit')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div
+            style="
+              padding: 12px 16px;
+              margin-bottom: 16px;
+              background: var(--bg4);
+              border-radius: var(--r-md);
+              border: 1px solid var(--brd);
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 8px;
+              "
+            >
+              <span style="font-size: 13px; font-weight: 600; color: var(--txt)"
+                >Modo de Mensagem WhatsApp</span
+              >
+              <label
+                style="
+                  position: relative;
+                  display: inline-block;
+                  width: 52px;
+                  height: 28px;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  type="checkbox"
+                  id="adminModeToggle"
+                  onchange="toggleAdminMode()"
+                  style="opacity: 0; width: 0; height: 0"
+                />
+                <span
+                  style="
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: var(--bg5);
+                    border: 1px solid var(--brd2);
+                    border-radius: 14px;
+                    transition: 0.3s;
+                  "
+                ></span>
+                <span
+                  style="
+                    position: absolute;
+                    content: &quot;&quot;;
+                    height: 20px;
+                    width: 20px;
+                    left: 4px;
+                    bottom: 3px;
+                    background: var(--txt3);
+                    border-radius: 50%;
+                    transition: 0.3s;
+                  "
+                  id="toggleSlider"
+                ></span>
+              </label>
+            </div>
+            <div style="font-size: 11px; color: var(--txt3); line-height: 1.4">
+              <span id="modeLabel">Cliente: Enviar lista de interesse</span>
+            </div>
+          </div>
+          <div id="editBody"></div>
+        </div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--sec"
+            style="flex: 1"
+            onclick="openAddService()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" /></svg
+            >Novo Serviço
+          </button>
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="saveEdit()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" /></svg
+            >Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalHelp">
+      <div class="modal__box" style="max-width: 680px">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Como Funciona?</h2>
+          <button class="modal__close" onclick="closeModal('modalHelp')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="tutorial-modern">
+            <!-- Passo 1 -->
+            <div class="step-modern">
+              <div class="step-modern__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </div>
+              <div class="step-modern__content">
+                <div class="step-modern__badge">Passo 1</div>
+                <h3 class="step-modern__title">Busque ou Navegue</h3>
+                <p class="step-modern__desc">
+                  Use a busca rápida ou explore as categorias para encontrar o
+                  serviço ideal
+                </p>
+              </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step-modern">
+              <div class="step-modern__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                  <path
+                    d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                  />
+                </svg>
+              </div>
+              <div class="step-modern__content">
+                <div class="step-modern__badge">Passo 2</div>
+                <h3 class="step-modern__title">Selecione Serviços</h3>
+                <p class="step-modern__desc">
+                  Clique nos cards para adicionar e ajuste quantidades com + e −
+                </p>
+              </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step-modern">
+              <div class="step-modern__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div class="step-modern__content">
+                <div class="step-modern__badge">Passo 3</div>
+                <h3 class="step-modern__title">Acompanhe o Total</h3>
+                <p class="step-modern__desc">
+                  Valor calculado em tempo real com classificação do projeto
+                </p>
+              </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step-modern step-modern--highlight">
+              <div class="step-modern__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+                  <path d="M22 2 11 13" />
+                </svg>
+              </div>
+              <div class="step-modern__content">
+                <div class="step-modern__badge">Passo 4</div>
+                <h3 class="step-modern__title">Envie pelo WhatsApp</h3>
+                <p class="step-modern__desc">
+                  Revise no resumo e envie direto para nossa equipe responder
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tutorial__footer-modern">
+            <div class="tutorial__footer-modern-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+            </div>
+            <div class="tutorial__footer-modern-content">
+              <h4 class="tutorial__footer-modern-title">E depois?</h4>
+              <p class="tutorial__footer-modern-text">
+                Nossa equipe recebe seu orçamento e retorna rapidamente para
+                esclarecer dúvidas, ajustar detalhes e agendar o início do
+                projeto.
+              </p>
+              <div class="tutorial__footer-modern-badge">
+                Resposta em até 2 horas
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="closeModal('modalHelp')"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" /></svg
+            >Entendi!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalFilter">
+      <div class="modal__box" style="max-width: 500px">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Filtros</h2>
+          <button class="modal__close" onclick="closeModal('modalFilter')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div style="padding: 20px 0">
+            <!-- Filtro de Tipo -->
+            <div style="text-align: center; margin-bottom: 32px">
+              <div class="filter__label">Tipo de Serviço</div>
+              <div class="filter">
+                <div class="filter__group">
+                  <button
+                    class="filter__option filter__option--active"
+                    data-filter="todos"
+                    onclick="setFilter('todos')"
+                  >
+                    Todos
+                  </button>
+                  <button
+                    class="filter__option"
+                    data-filter="imagem"
+                    onclick="setFilter('imagem')"
+                  >
+                    Imagem
+                  </button>
+                  <button
+                    class="filter__option"
+                    data-filter="video"
+                    onclick="setFilter('video')"
+                  >
+                    Vídeo
+                  </button>
+                  <div
+                    class="filter__bg"
+                    id="filterBg"
+                    style="left: 4px; width: 72px"
+                  ></div>
+                </div>
+              </div>
+              <div class="filter__desc">Filtre por tipo de mídia</div>
+            </div>
+
+            <!-- Filtro de Categoria -->
+            <div style="text-align: center">
+              <div class="filter__label">Categoria</div>
+              <div class="filter__tabs">
+                <button
+                  class="filter__tab filter__tab--active"
+                  data-tab="todos"
+                  onclick="switchTabAndClose('todos')"
+                >
+                  <i data-lucide="grid-3x3" class="icon-sm"></i>
+                  <span>Todos</span>
+                </button>
+                <button
+                  class="filter__tab"
+                  data-tab="social"
+                  onclick="switchTabAndClose('social')"
+                >
+                  <i data-lucide="sparkles" class="icon-sm"></i>
+                  <span>Rede Social</span>
+                </button>
+                <button
+                  class="filter__tab"
+                  data-tab="mkt"
+                  onclick="switchTabAndClose('mkt')"
+                >
+                  <i data-lucide="trending-up" class="icon-sm"></i>
+                  <span>Marketing</span>
+                </button>
+                <button
+                  class="filter__tab"
+                  data-tab="emp"
+                  onclick="switchTabAndClose('emp')"
+                >
+                  <i data-lucide="building-2" class="icon-sm"></i>
+                  <span>Sua Empresa</span>
+                </button>
+                <button
+                  class="filter__tab"
+                  data-tab="pkg"
+                  onclick="switchTabAndClose('pkg')"
+                >
+                  <i data-lucide="package" class="icon-sm"></i>
+                  <span>Pacotes</span>
+                </button>
+              </div>
+              <div class="filter__desc">Escolha a categoria de serviço</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAddService">
+      <div class="modal__box" style="max-width: 450px">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Adicionar Novo Serviço</h2>
+          <button class="modal__close" onclick="closeModal('modalAddService')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div style="padding: 12px 0">
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Nome do Serviço</label
+              >
+              <input
+                type="text"
+                id="newServiceName"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+                placeholder="Ex: Reels Premium"
+              />
+            </div>
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Descrição</label
+              >
+              <input
+                type="text"
+                id="newServiceDesc"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+                placeholder="Ex: Vídeo editado com motion graphics"
+              />
+            </div>
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Preço (R$)</label
+              >
+              <input
+                type="number"
+                id="newServicePrice"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+                placeholder="0"
+              />
+            </div>
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Unidade</label
+              >
+              <input
+                type="text"
+                id="newServiceUnit"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+                placeholder="Ex: por vídeo"
+                value="por unidade"
+              />
+            </div>
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Categoria</label
+              >
+              <select
+                id="newServiceCat"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+                onchange="toggleNewCatInput()"
+              >
+                <option value="criativos">Criativos para Anúncios</option>
+                <option value="organico">Conteúdo Orgânico</option>
+                <option value="edicao">Edição e Pós-Produção</option>
+                <option value="vsl">VSL</option>
+                <option value="lanc">Lançamentos</option>
+                <option value="consult">Consultoria</option>
+                <option value="inst">Institucional</option>
+                <option value="evento">Eventos</option>
+                <option value="foto">Fotografia</option>
+                <option value="motion">Motion Design</option>
+                <option value="__new__">+ Criar Nova Categoria</option>
+              </select>
+              <input
+                type="text"
+                id="newCategoryName"
+                class="form-row__input"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  display: none;
+                  margin-top: 8px;
+                "
+                placeholder="Nome da nova categoria (ex: drone)"
+              />
+            </div>
+            <div
+              class="form-row"
+              style="
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-bottom: 16px;
+              "
+            >
+              <label class="form-row__label" style="font-size: 13px"
+                >Tipo</label
+              >
+              <select
+                id="newServiceType"
+                class="form-row__input"
+                style="width: 100%; text-align: left"
+              >
+                <option value="video">Vídeo</option>
+                <option value="imagem">Imagem</option>
+                <option value="sistema">Sistema</option>
+              </select>
+            </div>
+            <div class="form-row" style="align-items: center; gap: 8px">
+              <label class="form-row__label" style="font-size: 13px"
+                >Permite múltiplas quantidades?</label
+              >
+              <input
+                type="checkbox"
+                id="newServiceQty"
+                style="width: 20px; height: 20px; cursor: pointer"
+                checked
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--sec"
+            style="flex: 1"
+            onclick="closeModal('modalAddService')"
+          >
+            Cancelar
+          </button>
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="addNewService()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" /></svg
+            >Adicionar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">
+      <span class="toast__icon"
+        ><svg class="icon" viewBox="0 0 24 24">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" /></svg
+      ></span>
+      <span class="toast__msg" id="toastMsg">Salvo!</span>
+    </div>
+
+    <script>
+      // Preços ajustados para mercado de Vila Velha/ES (valores médios regionais)
+      const D = {
+        criativos: [
+          {
+            id: "c1",
+            n: "Criativo de Anúncio (até 1min)",
+            d: "Vídeo Curto para Tráfego Pago",
+            p: 280,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "c2",
+            n: "Pacote Semanal (10 Criativos)",
+            d: "Produção Recorrente Semanal",
+            p: 2200,
+            u: "por semana",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "c3",
+            n: "Pacote Mensal (20 Criativos)",
+            d: "Produção Recorrente Mensal",
+            p: 4200,
+            u: "por mês",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "c4",
+            n: "Criativo com Ator/Modelo",
+            d: "Inclui Talento Profissional",
+            p: 480,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "c5",
+            n: "Variação de Criativo (A/B)",
+            d: "Versão Alternativa para Teste",
+            p: 120,
+            u: "por variação",
+            qty: true,
+            tipo: "video",
+          },
+        ],
+        organico: [
+          {
+            id: "o1",
+            n: "Reels/TikTok (até 60s)",
+            d: "Conteúdo Viral para Feed",
+            p: 220,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "o2",
+            n: "Stories (Pacote 5 Vídeos)",
+            d: "Conteúdo Diário para Engajamento",
+            p: 350,
+            u: "por pacote",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "o3",
+            n: "Carrossel Animado",
+            d: "Posts com Motion Graphics",
+            p: 250,
+            u: "por post",
+            qty: true,
+            tipo: "imagem",
+          },
+          {
+            id: "o4",
+            n: "Bastidores/Dia a Dia",
+            d: "Conteúdo Autêntico da Marca",
+            p: 300,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+        ],
+        edicao: [
+          {
+            id: "e1",
+            n: "Edição Básica",
+            d: "Cortes, Legendas e Trilha",
+            p: 100,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "e2",
+            n: "Edição Avançada",
+            d: "Efeitos, Motion e Color Grading",
+            p: 280,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "e3",
+            n: "Legendas Dinâmicas",
+            d: "Legendas Animadas Estilo TikTok",
+            p: 60,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "e4",
+            n: "Thumbnail Personalizada",
+            d: "Capa Otimizada para Cliques",
+            p: 45,
+            u: "por thumb",
+            qty: true,
+            tipo: "imagem",
+          },
+        ],
+        vsl: [
+          {
+            id: "v1",
+            n: "VSL Curta (até 5min)",
+            d: "Vídeo de Vendas Direto ao Ponto",
+            p: 1800,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "v2",
+            n: "VSL Média (5-15min)",
+            d: "Storytelling Completo de Vendas",
+            p: 3500,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "v3",
+            n: "VSL Longa (15-30min)",
+            d: "Apresentação Completa do Produto",
+            p: 5500,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "v4",
+            n: "Variação de VSL (A/B)",
+            d: "Nova Versão para Teste (60-90 Dias)",
+            p: 1400,
+            u: "por variação",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "v5",
+            n: "Roteiro de VSL",
+            d: "Script Profissional de Alta Conversão",
+            p: 900,
+            u: "por roteiro",
+            qty: true,
+            tipo: "video",
+          },
+        ],
+        lanc: [
+          {
+            id: "l1",
+            n: "Vídeo de Captação (CPL)",
+            d: "Convite para Evento de Lançamento",
+            p: 1400,
+            u: "por vídeo",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "l2",
+            n: "Conteúdo Pré-Lançamento",
+            d: "Série de Vídeos de Aquecimento",
+            p: 2500,
+            u: "por série",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "l3",
+            n: "Gravação de Aula/Webinar",
+            d: "Produção Profissional de Live",
+            p: 2200,
+            u: "por gravação",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "l4",
+            n: "Depoimentos/Prova Social",
+            d: "Entrevistas com Clientes",
+            p: 350,
+            u: "por depoimento",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "l5",
+            n: "Teaser de Lançamento",
+            d: "Vídeo de Expectativa",
+            p: 700,
+            u: "por teaser",
+            qty: true,
+            tipo: "video",
+          },
+        ],
+        consult: [
+          {
+            id: "s1",
+            n: "Consultoria de Conteúdo (1h)",
+            d: "Análise e Direcionamento",
+            p: 280,
+            u: "por hora",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "s4",
+            n: "Script/Roteiro Personalizado",
+            d: "Texto Persuasivo Sob Medida",
+            p: 200,
+            u: "por roteiro",
+            qty: true,
+            tipo: "video",
+          },
+        ],
+        inst: [
+          {
+            id: "i1",
+            n: "Vídeo Institucional (até 2min)",
+            d: "Apresentação da Empresa",
+            p: 3500,
+            u: "por vídeo",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "i2",
+            n: "Vídeo Institucional (3-5min)",
+            d: "Versão Estendida com Mais Detalhes",
+            p: 5800,
+            u: "por vídeo",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "i5",
+            n: "Banner",
+            d: "Arte Estática para Divulgação",
+            p: 120,
+            u: "por banner",
+            qty: true,
+            tipo: "imagem",
+          },
+          {
+            id: "i6",
+            n: "Convite de Casamento Digital",
+            d: "Arte Personalizada para Casamento",
+            p: 150,
+            u: "por convite",
+            qty: true,
+            tipo: "imagem",
+          },
+          {
+            id: "i7",
+            n: "Landing Page",
+            d: "Página de Vendas ou Captura",
+            p: 800,
+            u: "por página",
+            qty: false,
+            tipo: "sistema",
+          },
+          {
+            id: "i8",
+            n: "Site (até 5 Páginas)",
+            d: "Website Institucional Completo",
+            p: 1700,
+            u: "por site",
+            qty: false,
+            tipo: "sistema",
+          },
+          {
+            id: "i9",
+            n: "Web App",
+            d: "Aplicação Web Customizada",
+            p: 2200,
+            u: "por projeto",
+            qty: false,
+            tipo: "sistema",
+          },
+          {
+            id: "i10",
+            n: "Soluções de Sistemas",
+            d: "Desenvolvimento Sob Medida",
+            p: 0,
+            u: "sob consulta",
+            qty: false,
+            tipo: "sistema",
+          },
+        ],
+        evento: [
+          {
+            id: "ev1",
+            n: "Cobertura Básica (4h)",
+            d: "Registro do Evento",
+            p: 1800,
+            u: "por evento",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "ev2",
+            n: "Cobertura Completa (8h)",
+            d: "Registro Integral + Entrevistas",
+            p: 3500,
+            u: "por evento",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "ev3",
+            n: "Aftermovie",
+            d: "Vídeo Resumo do Evento",
+            p: 1400,
+            u: "por vídeo",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "ev4",
+            n: "Transmissão ao Vivo",
+            d: "Streaming Profissional",
+            p: 2800,
+            u: "por evento",
+            qty: false,
+            tipo: "video",
+          },
+        ],
+        foto: [
+          {
+            id: "f1",
+            n: "Ensaio Corporativo (2h)",
+            d: "Fotos da Equipe e Liderança",
+            p: 900,
+            u: "por ensaio",
+            qty: false,
+            tipo: "imagem",
+          },
+          {
+            id: "f2",
+            n: "Foto de Produto (10 Itens)",
+            d: "Still para E-commerce",
+            p: 700,
+            u: "por pacote",
+            qty: true,
+            tipo: "imagem",
+          },
+          {
+            id: "f3",
+            n: "Foto Gastronômica",
+            d: "Alimentos e Bebidas",
+            p: 850,
+            u: "por sessão",
+            qty: false,
+            tipo: "imagem",
+          },
+        ],
+        motion: [
+          {
+            id: "m1",
+            n: "Animação de Logo Marca",
+            d: "Logo Animada com Motion Design",
+            p: 250,
+            u: "por animação",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "m2",
+            n: "Animação 2D (Vídeo Ilustração)",
+            d: "Vídeo Ilustrado com Animação 2D",
+            p: 1600,
+            u: "por vídeo",
+            qty: false,
+            tipo: "video",
+          },
+          {
+            id: "m3",
+            n: "Intro Vídeo (Vinheta)",
+            d: "Vinheta de Abertura para Vídeos",
+            p: 300,
+            u: "por vinheta",
+            qty: true,
+            tipo: "video",
+          },
+          {
+            id: "m4",
+            n: "VFX",
+            d: "Efeitos Visuais Profissionais",
+            p: 0,
+            u: "sob consulta",
+            qty: false,
+            tipo: "video",
+          },
+        ],
+      };
+
+      const PKG = [
+        {
+          id: "pk1",
+          n: "Starter - Redes Sociais",
+          sub: "Ideal para começar",
+          badge: "Popular",
+          itens: [
+            "10 criativos por mês",
+            "Edição básica inclusa",
+            "Legendas dinâmicas",
+            "2 variações para teste",
+          ],
+          p: 2800,
+          eco: "Economize R$ 650",
+        },
+        {
+          id: "pk2",
+          n: "Pro - Marketing Digital",
+          sub: "Para escalar vendas",
+          badge: "Recomendado",
+          itens: [
+            "20 criativos por mês",
+            "1 VSL curta a cada 60-90 dias",
+            "Roteiros inclusos",
+            "Consultoria mensal",
+          ],
+          p: 6800,
+          eco: "Economize R$ 1.800",
+        },
+        {
+          id: "pk3",
+          n: "Enterprise - Completo",
+          sub: "Solução completa",
+          badge: "Premium",
+          itens: [
+            "40 criativos por mês",
+            "2 VSLs por trimestre",
+            "Vídeo institucional anual",
+            "Planejamento estratégico",
+          ],
+          p: 14500,
+          eco: "Economize R$ 4.200",
+        },
+      ];
+
+      let sel = {}; // {id: qty}
+      let pkgSel = null;
+      let currentFilter = "todos"; // filtro atual: todos, imagem, video
+      let isAdminMode = false; // modo admin desabilitado por padrão
+      const fmt = (n) => n.toLocaleString("pt-BR");
+      const all = () => Object.values(D).flat();
+      const get = (id) => all().find((s) => s.id === id);
+      const cat = (id) => {
+        for (let [k, v] of Object.entries(D))
+          if (v.find((s) => s.id === id)) return k;
+        return "";
+      };
+      const catName = {
+        criativos: "Criativos",
+        organico: "Conteúdo Orgânico",
+        edicao: "Edição",
+        vsl: "VSL",
+        lanc: "Lançamentos",
+        consult: "Consultoria",
+        inst: "Institucional",
+        evento: "Eventos",
+        foto: "Fotografia",
+        motion: "Motion Design",
+      };
+
+      const total = () => {
+        let t = 0;
+        Object.entries(sel).forEach(([id, qty]) => {
+          const s = get(id);
+          if (s) t += s.p * qty;
+        });
+        if (pkgSel) {
+          const p = PKG.find((x) => x.id === pkgSel);
+          if (p) t += p.p;
+        }
+        return t;
+      };
+
+      const countItems = () => {
+        let c = Object.values(sel).reduce((a, b) => a + b, 0);
+        if (pkgSel) c++;
+        return c;
+      };
+
+      function renderSvc(s) {
+        const qty = sel[s.id] || 0;
+        const isSel = qty > 0;
+        const sub = s.p * qty;
+
+        let qtyHtml = "";
+        if (s.qty) {
+          if (isSel) {
+            qtyHtml = `<div class="svc__qty">
+                <button class="svc__qty-btn" onclick="event.stopPropagation();changeQty('${s.id}',-1)">−</button>
+                <span class="svc__qty-val">${qty}</span>
+                <button class="svc__qty-btn" onclick="event.stopPropagation();changeQty('${s.id}',1)">+</button>
+            </div>`;
+          } else {
+            qtyHtml = `<button class="svc__toggle" onclick="event.stopPropagation();changeQty('${s.id}',1)">+</button>`;
+          }
+        } else {
+          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggle('${s.id}')">${isSel ? "✓" : ""}</button>`;
+        }
+
+        return `<div class="svc${isSel ? " svc--sel" : ""}" data-id="${s.id}">
+    <div class="svc__top">
+        <div class="svc__icon"><svg class="icon" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg></div>
+        <div class="svc__info">
+            <div class="svc__header"><span class="svc__name">${s.n}${s.p === 0 ? '<span class="svc__tag">Consultar</span>' : ""}</span></div>
+            <div class="svc__desc">${s.d}</div>
+        </div>
+    </div>
+    <div class="svc__foot">
+        <div><span class="svc__price">${s.p === 0 ? "Sob consulta" : `R$ ${fmt(s.p)}`}</span> ${s.p === 0 ? "" : `<span class="svc__unit">${s.u}</span>`}</div>
+        ${qtyHtml}
+    </div>
+    ${isSel && s.qty ? `<div class="svc__subtotal">Subtotal: R$ ${fmt(sub)}</div>` : ""}
+</div>`;
+      }
+
+      function renderPkg(p) {
+        const isSel = pkgSel === p.id;
+        const badgeClass =
+          p.badge === "Popular"
+            ? "pkg__badge--popular"
+            : p.badge === "Recomendado"
+              ? "pkg__badge--recomendado"
+              : p.badge === "Premium"
+                ? "pkg__badge--premium"
+                : "";
+        return `<div class="pkg${isSel ? " pkg--sel" : ""}" onclick="togglePkg('${p.id}')">
+    <div class="pkg__head">
+        <div class="pkg__info">
+            <div class="pkg__title">${p.n}</div>
+            <div class="pkg__sub">${p.sub}</div>
+        </div>
+        <span class="pkg__badge ${badgeClass}">${p.badge}</span>
+    </div>
+    <div class="pkg__items">${p.itens.map((i) => `<div class="pkg__item"><i data-lucide="check-circle" class="icon-sm"></i>${i}</div>`).join("")}</div>
+    <div class="pkg__foot">
+        <div class="pkg__price-wrap">
+            <div class="pkg__price">R$ ${fmt(p.p)} <span>/mês</span></div>
+        </div>
+        <div class="pkg__save">${p.eco}</div>
+    </div>
+</div>`;
+      }
+
+      function render() {
+        // Função de filtro
+        const filterServices = (services) => {
+          if (currentFilter === "todos") return services;
+          return services.filter((s) => s.tipo === currentFilter);
+        };
+
+        // Verifica se a tab "Todos" está ativa
+        const todosTabActive = document
+          .getElementById("tab-todos")
+          ?.classList.contains("tab-content--active");
+
+        // Renderiza tab Todos (todos os serviços)
+        const todosEl = document.getElementById("g-todos");
+        if (todosEl) {
+          // Se filtro "todos" está selecionado E a tab "Todos" está ativa, não mostra nada (só através da busca)
+          if (currentFilter === "todos" && todosTabActive) {
+            todosEl.innerHTML = "";
+          } else {
+            todosEl.innerHTML = filterServices(all()).map(renderSvc).join("");
+          }
+        }
+
+        // Renderiza categorias específicas (SEMPRE renderiza, exceto quando tab Todos está ativa)
+        Object.keys(D).forEach((k) => {
+          const g = document.getElementById("g-" + k);
+          if (g) {
+            // Só não renderiza se o filtro "todos" estiver ativo E a tab "Todos" estiver ativa
+            if (currentFilter === "todos" && todosTabActive) {
+              g.innerHTML = "";
+            } else {
+              g.innerHTML = filterServices(D[k]).map(renderSvc).join("");
+            }
+          }
+        });
+        document.getElementById("pkgContainer").innerHTML =
+          PKG.map(renderPkg).join("");
+        updBadges();
+        updScore();
+        if (typeof lucide !== "undefined") lucide.createIcons();
+      }
+
+      function updBadges() {
+        const cnt = {};
+        Object.keys(D).forEach((k) => (cnt[k] = 0));
+        Object.keys(sel).forEach((id) => {
+          const c = cat(id);
+          if (cnt[c] !== undefined && sel[id] > 0) cnt[c] += sel[id];
+        });
+        Object.entries(cnt).forEach(([k, v]) => {
+          const b = document.getElementById("b-" + k);
+          if (b) {
+            b.textContent = v;
+            b.classList.toggle("acc__badge--empty", v === 0);
+          }
+        });
+        const c = countItems();
+        document.getElementById("bar").classList.toggle("bar--show", c > 0);
+      }
+
+      function updScore() {
+        const t = total(),
+          c = countItems();
+        document.getElementById("scoreVal").textContent = fmt(t);
+        document.getElementById("scoreCount").textContent =
+          `${c} ${c === 1 ? "serviço" : "serviços"}`;
+        const ch = document.getElementById("scoreChange");
+        if (c > 0) {
+          ch.innerHTML = `<svg class="icon-sm" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>+${c} selecionado${c > 1 ? "s" : ""}`;
+        } else {
+          ch.innerHTML = `<svg class="icon-sm" viewBox="0 0 24 24" style="color:#fff"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg><span style="color:#fff">Aguardando seleção</span>`;
+        }
+        document.getElementById("scoreStatus").textContent =
+          c > 0 ? "Valor atualizado" : "Escolha os serviços abaixo";
+        let lbl = "Selecione os serviços",
+          clr = "var(--txt2)";
+        if (t > 0 && t <= 2500) {
+          lbl = "Projeto pontual";
+          clr = "var(--txt)";
+        } else if (t > 2500 && t <= 6000) {
+          lbl = "Produção mensal";
+          clr = "var(--txt)";
+        } else if (t > 6000 && t <= 12000) {
+          lbl = "Parceria recorrente";
+          clr = "var(--txt)";
+        } else if (t > 12000) {
+          lbl = "Contrato dedicado";
+          clr = "var(--txt)";
+        }
+        const lblEl = document.getElementById("scoreLabel");
+        lblEl.textContent = lbl;
+        lblEl.style.color = clr;
+        document.getElementById("specDot").style.left =
+          Math.max(3, Math.min(97, t / 250)) + "%";
+      }
+
+      function changeQty(id, delta) {
+        const s = get(id);
+        if (!s) return;
+        const curr = sel[id] || 0;
+        const nv = Math.max(0, curr + delta);
+        if (nv === 0) delete sel[id];
+        else sel[id] = nv;
+        render();
+      }
+
+      function toggle(id) {
+        if (sel[id]) delete sel[id];
+        else sel[id] = 1;
+        render();
+      }
+
+      function togglePkg(id) {
+        pkgSel = pkgSel === id ? null : id;
+        render();
+      }
+      function switchTab(t) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((el) =>
+            el.classList.toggle("tab--active", el.dataset.tab === t),
+          );
+        document.querySelectorAll(".tab-content").forEach((el) => {
+          const isActive = el.id === "tab-" + t;
+          el.classList.toggle("tab-content--active", isActive);
+        });
+
+        // Re-renderiza para aplicar a lógica de mostrar/esconder baseado na tab ativa
+        render();
+      }
+      function switchTabAndClose(t) {
+        switchTab(t);
+        // Atualiza os botões do modal de filtros
+        document
+          .querySelectorAll(".filter__tab")
+          .forEach((el) =>
+            el.classList.toggle("filter__tab--active", el.dataset.tab === t),
+          );
+        closeModal("modalFilter");
+      }
+      function toggleAcc(el) {
+        el.parentElement.classList.toggle("acc--open");
+      }
+
+      // FILTER
+      function setFilter(filter) {
+        currentFilter = filter;
+
+        // Atualiza classes dos botões
+        document.querySelectorAll(".filter__option").forEach((el) => {
+          el.classList.toggle(
+            "filter__option--active",
+            el.dataset.filter === filter,
+          );
+        });
+
+        // Anima o background
+        const activeBtn = document.querySelector(
+          `.filter__option[data-filter="${filter}"]`,
+        );
+        const bg = document.getElementById("filterBg");
+        if (activeBtn && bg) {
+          const parent = activeBtn.parentElement;
+          const parentRect = parent.getBoundingClientRect();
+          const btnRect = activeBtn.getBoundingClientRect();
+          const left = btnRect.left - parentRect.left;
+          const width = btnRect.width;
+          bg.style.left = `${left}px`;
+          bg.style.width = `${width}px`;
+        }
+
+        // Atualiza cores dos ícones
+        document.body.classList.remove(
+          "filter-todos",
+          "filter-imagem",
+          "filter-video",
+        );
+        document.body.classList.add(`filter-${filter}`);
+
+        // Re-renderiza com filtro
+        render();
+      }
+
+      // SEARCH
+      function handleSearch() {
+        const q = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+        const clear = document.getElementById("searchClear");
+        const results = document.getElementById("searchResults");
+        const searchBody = document.getElementById("searchBody");
+        const searchCount = document.getElementById("searchCount");
+
+        // Mostra/esconde botão clear
+        clear.classList.toggle("search__clear--show", q.length > 0);
+
+        // Busca com apenas 1 caractere
+        if (q.length < 1) {
+          results.classList.remove("search__results--show");
+          return;
+        }
+
+        // Busca nos nomes e descrições
+        const matches = all().filter(
+          (s) =>
+            s.n.toLowerCase().includes(q) ||
+            s.d.toLowerCase().includes(q) ||
+            catName[cat(s.id)].toLowerCase().includes(q),
+        );
+
+        // Atualiza contador
+        if (matches.length === 0) {
+          searchCount.textContent = "Nenhum resultado";
+          searchBody.innerHTML =
+            '<div class="search__empty">Nenhum serviço encontrado para "' +
+            q +
+            '"<br><span style="font-size:12px;margin-top:8px;display:block">Tente buscar por: vídeo, reels, vsl, foto</span></div>';
+        } else {
+          searchCount.textContent = `${matches.length} ${matches.length === 1 ? "resultado" : "resultados"} encontrado${matches.length === 1 ? "" : "s"}`;
+          searchBody.innerHTML = matches
+            .slice(0, 8)
+            .map((s) => renderSearchCard(s))
+            .join("");
+        }
+
+        results.classList.add("search__results--show");
+        lucide.createIcons();
+      }
+
+      function handleSearchKeydown(e) {
+        if (e.key === "Escape") {
+          clearSearch();
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+        }
+      }
+
+      function renderSearchCard(s) {
+        const qty = sel[s.id] || 0;
+        const isSel = qty > 0;
+        const sub = s.p * qty;
+
+        let qtyHtml = "";
+        if (s.qty) {
+          qtyHtml = `<div class="svc__qty">
+            <button class="svc__qty-btn" onclick="event.stopPropagation();changeQtySearch('${s.id}',-1)">−</button>
+            <span class="svc__qty-val">${qty}</span>
+            <button class="svc__qty-btn" onclick="event.stopPropagation();changeQtySearch('${s.id}',1)">+</button>
+        </div>`;
+        } else {
+          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggleSearch('${s.id}')">${isSel ? "✓" : ""}</button>`;
+        }
+
+        return `<div class="search__card${isSel ? " search__card--sel" : ""}" onclick="${!isSel ? `addFromSearch('${s.id}')` : ""}" title="${!isSel ? "Clique para adicionar" : "Já adicionado"}">
+        <div class="search__card-top">
+            <div class="search__card-left">
+                <div class="search__card-icon">
+                    <i data-lucide="${isSel ? "check" : "video"}" class="icon"></i>
+                </div>
+                <div class="search__card-info">
+                    <div class="search__card-name">${s.n}</div>
+                    <div class="search__card-cat">${catName[cat(s.id)]}</div>
+                </div>
+            </div>
+        </div>
+        <div class="search__card-foot">
+            <div>
+                <span class="search__card-price">R$ ${fmt(s.p)}</span>
+                <span class="search__card-unit">${s.u}</span>
+            </div>
+            ${qtyHtml}
+        </div>
+        ${isSel && s.qty ? `<div class="search__card-sub">Subtotal: R$ ${fmt(sub)}</div>` : ""}
+    </div>`;
+      }
+
+      function changeQtySearch(id, delta) {
+        const s = get(id);
+        if (!s) return;
+        const curr = sel[id] || 0;
+        const nv = Math.max(0, curr + delta);
+        if (nv === 0) delete sel[id];
+        else sel[id] = nv;
+        handleSearch();
+        render();
+      }
+
+      function toggleSearch(id) {
+        if (sel[id]) delete sel[id];
+        else sel[id] = 1;
+        handleSearch();
+        render();
+      }
+
+      function addFromSearch(id) {
+        const s = get(id);
+        if (!s) return;
+        if (s.qty) {
+          sel[id] = (sel[id] || 0) + 1;
+        } else {
+          sel[id] = 1;
+        }
+        handleSearch();
+        render();
+        toast(`${s.n} adicionado!`);
+      }
+
+      function clearSearch() {
+        const input = document.getElementById("searchInput");
+        input.value = "";
+        input.focus();
+        document
+          .getElementById("searchClear")
+          .classList.remove("search__clear--show");
+        document
+          .getElementById("searchResults")
+          .classList.remove("search__results--show");
+        document.getElementById("searchCount").textContent =
+          "Digite para buscar";
+        document.getElementById("searchBody").innerHTML = "";
+      }
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".search"))
+          document
+            .getElementById("searchResults")
+            .classList.remove("search__results--show");
+      });
+
+      function openSum() {
+        const body = document.getElementById("sumBody");
+        const hasItems = Object.keys(sel).length > 0 || pkgSel;
+        if (!hasItems) {
+          body.innerHTML = `<div class="empty"><div class="empty__icon"><svg class="icon-lg" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><p class="empty__title">Nenhum item selecionado</p><p class="empty__text">Selecione serviços para ver o resumo</p></div>`;
+        } else {
+          let html = '<div class="sum-cards">';
+          Object.entries(sel).forEach(([id, qty]) => {
+            const s = get(id);
+            if (!s) return;
+            const sub = s.p * qty;
+
+            let qtyHtml = "";
+            if (s.qty) {
+              qtyHtml = `<div class="svc__qty">
+                    <button class="svc__qty-btn" onclick="changeQtySum('${s.id}',-1)">−</button>
+                    <span class="svc__qty-val">${qty}</span>
+                    <button class="svc__qty-btn" onclick="changeQtySum('${s.id}',1)">+</button>
+                </div>`;
+            } else {
+              qtyHtml = `<button class="sum-card__remove" onclick="removeFromSum('${s.id}')">✕</button>`;
+            }
+
+            html += `<div class="sum-card">
+                <div class="sum-card__top">
+                    <div class="sum-card__info">
+                        <div class="sum-card__name">${s.n}</div>
+                        <div class="sum-card__cat">${catName[cat(s.id)]}</div>
+                    </div>
+                    ${qtyHtml}
+                </div>
+                <div class="sum-card__foot">
+                    <div class="sum-card__unit">${qty}x R$ ${fmt(s.p)}</div>
+                    <div class="sum-card__subtotal">R$ ${fmt(sub)}</div>
+                </div>
+            </div>`;
+          });
+
+          if (pkgSel) {
+            const p = PKG.find((x) => x.id === pkgSel);
+            if (p) {
+              html += `<div class="sum-card sum-card--pkg">
+                    <div class="sum-card__top">
+                        <div class="sum-card__info">
+                            <div class="sum-card__name">${p.n}</div>
+                            <div class="sum-card__cat">Pacote</div>
+                        </div>
+                        <button class="sum-card__remove" onclick="removePkgSum()">✕</button>
+                    </div>
+                    <div class="sum-card__foot">
+                        <div class="sum-card__unit">Mensal</div>
+                        <div class="sum-card__subtotal">R$ ${fmt(p.p)}</div>
+                    </div>
+                </div>`;
+            }
+          }
+
+          html += `</div>`;
+          html += `<div class="sum-total"><span class="sum-total__label">Total</span><span class="sum-total__value">R$ ${fmt(total())}</span></div>`;
+          body.innerHTML = html;
+        }
+        document.getElementById("modalSum").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function changeQtySum(id, delta) {
+        const s = get(id);
+        if (!s) return;
+        const curr = sel[id] || 0;
+        const nv = Math.max(0, curr + delta);
+        if (nv === 0) delete sel[id];
+        else sel[id] = nv;
+        openSum();
+        render();
+      }
+
+      function removeFromSum(id) {
+        delete sel[id];
+        openSum();
+        render();
+      }
+
+      function removePkgSum() {
+        pkgSel = null;
+        openSum();
+        render();
+      }
+
+      // PASSWORD
+      const EDIT_PASS = "210199"; // Altere a senha aqui
+
+      function askPass() {
+        document.getElementById("passInput").value = "";
+        document.getElementById("passError").style.display = "none";
+        document.getElementById("modalPass").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => document.getElementById("passInput").focus(), 100);
+      }
+
+      function checkPass() {
+        const input = document.getElementById("passInput").value;
+        if (input === EDIT_PASS) {
+          closeModal("modalPass");
+          openEditReal();
+        } else {
+          document.getElementById("passError").style.display = "block";
+          document.getElementById("passInput").value = "";
+          document.getElementById("passInput").focus();
+        }
+      }
+
+      function openEdit() {
+        askPass();
+      }
+
+      function openEditReal() {
+        let html = "";
+        Object.entries(D).forEach(([k, itens]) => {
+          html += `<div class="form-sec"><div class="form-sec__title">${catName[k] || k}</div>`;
+          itens.forEach((s) => {
+            html += `<div class="form-row"><span class="form-row__label">${s.n}</span><input type="number" class="form-row__input" data-id="${s.id}" value="${s.p}" min="0" step="50"></div>`;
+          });
+          html += `</div>`;
+        });
+        document.getElementById("editBody").innerHTML = html;
+        document.getElementById("modalEdit").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function saveEdit() {
+        document
+          .querySelectorAll("#editBody .form-row__input")
+          .forEach((inp) => {
+            const id = inp.dataset.id,
+              v = parseInt(inp.value) || 0;
+            Object.values(D).forEach((arr) => {
+              const s = arr.find((x) => x.id === id);
+              if (s) s.p = v;
+            });
+          });
+        closeModal("modalEdit");
+        render();
+        toast("Valores atualizados!");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("modal--show");
+        document.body.style.overflow = "";
+      }
+      function toast(msg) {
+        const t = document.getElementById("toast");
+        document.getElementById("toastMsg").textContent = msg;
+        t.classList.add("toast--show");
+        setTimeout(() => t.classList.remove("toast--show"), 2500);
+      }
+
+      function openHelp() {
+        document.getElementById("modalHelp").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+          if (typeof lucide !== "undefined") lucide.createIcons();
+        }, 100);
+      }
+
+      function openFilter() {
+        // Sincroniza o estado das tabs no modal com as tabs principais
+        const activeTab = document.querySelector(".tab--active");
+        if (activeTab) {
+          const tabName = activeTab.dataset.tab;
+          document.querySelectorAll(".filter__tab").forEach((el) => {
+            el.classList.toggle(
+              "filter__tab--active",
+              el.dataset.tab === tabName,
+            );
+          });
+        }
+        document.getElementById("modalFilter").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+          if (typeof lucide !== "undefined") lucide.createIcons();
+        }, 100);
+      }
+
+      function openAddService() {
+        closeModal("modalEdit");
+        document.getElementById("modalAddService").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+        // Limpa os campos
+        document.getElementById("newServiceName").value = "";
+        document.getElementById("newServiceDesc").value = "";
+        document.getElementById("newServicePrice").value = "";
+        document.getElementById("newServiceUnit").value = "por unidade";
+        document.getElementById("newServiceCat").value = "criativos";
+        document.getElementById("newServiceType").value = "video";
+        document.getElementById("newServiceQty").checked = true;
+      }
+
+      function toggleNewCatInput() {
+        const catSelect = document.getElementById("newServiceCat");
+        const newCatInput = document.getElementById("newCategoryName");
+        if (catSelect.value === "__new__") {
+          newCatInput.style.display = "block";
+        } else {
+          newCatInput.style.display = "none";
+        }
+      }
+
+      function addNewService() {
+        const name = document.getElementById("newServiceName").value.trim();
+        const desc = document.getElementById("newServiceDesc").value.trim();
+        const price =
+          parseInt(document.getElementById("newServicePrice").value) || 0;
+        const unit = document.getElementById("newServiceUnit").value.trim();
+        let cat = document.getElementById("newServiceCat").value;
+        const tipo = document.getElementById("newServiceType").value;
+        const qty = document.getElementById("newServiceQty").checked;
+
+        // Se for criar nova categoria
+        if (cat === "__new__") {
+          const newCatName = document
+            .getElementById("newCategoryName")
+            .value.trim();
+          if (!newCatName) {
+            toast("Digite o nome da nova categoria!");
+            return;
+          }
+          // Converte para lowercase e remove espaços
+          cat = newCatName.toLowerCase().replace(/\s+/g, "");
+          // Cria a categoria se não existir
+          if (!D[cat]) {
+            D[cat] = [];
+          }
+        }
+
+        if (!name || !desc) {
+          toast("Preencha todos os campos obrigatórios!");
+          return;
+        }
+
+        // Gera ID único
+        const timestamp = Date.now();
+        const newId = `custom_${timestamp}`;
+
+        // Adiciona o novo serviço à categoria
+        const newService = {
+          id: newId,
+          n: name,
+          d: desc,
+          p: price,
+          u: unit,
+          qty: qty,
+          tipo: tipo,
+        };
+
+        D[cat].push(newService);
+
+        closeModal("modalAddService");
+        render();
+        toast(`${name} adicionado com sucesso!`);
+
+        // Limpa campos
+        document.getElementById("newServiceName").value = "";
+        document.getElementById("newServiceDesc").value = "";
+        document.getElementById("newServicePrice").value = "";
+        document.getElementById("newServiceUnit").value = "por unidade";
+        document.getElementById("newCategoryName").value = "";
+        document.getElementById("newServiceCat").value = "criativos";
+        document.getElementById("newCategoryName").style.display = "none";
+
+        // Reabre o modal de edição
+        setTimeout(() => openEdit(), 300);
+      }
+
+      function toggleAdminMode() {
+        isAdminMode = document.getElementById("adminModeToggle").checked;
+        const label = document.getElementById("modeLabel");
+        if (isAdminMode) {
+          label.innerHTML =
+            '<strong style="color:var(--green)">Admin</strong>: Enviar orçamento profissional';
+        } else {
+          label.innerHTML =
+            "<strong>Cliente</strong>: Enviar lista de interesse";
+        }
+      }
+
+      function sendWpp() {
+        if (Object.keys(sel).length === 0 && !pkgSel)
+          return toast("Selecione itens primeiro");
+
+        const now = new Date();
+        const dt = now.toLocaleDateString("pt-BR");
+        const hora = now.toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        const itemCount =
+          Object.values(sel).reduce((sum, qty) => sum + qty, 0) +
+          (pkgSel ? 1 : 0);
+
+        // Agrupa serviços por categoria
+        const grupos = {};
+        Object.entries(sel).forEach(([id, qty]) => {
+          const c = cat(id);
+          if (!grupos[c]) grupos[c] = [];
+          grupos[c].push({ ...get(id), qty });
+        });
+
+        const emojiMap = {
+          criativos: "🎥",
+          organico: "✨",
+          edicao: "✂️",
+          vsl: "📹",
+          lanc: "🚀",
+          consult: "💡",
+          inst: "🏢",
+          evento: "🎉",
+          foto: "📸",
+        };
+
+        let msg = "";
+
+        if (isAdminMode) {
+          // MENSAGEM ADMIN → Produtora enviando para cliente
+          msg = `Olá! 👋\n\n`;
+          msg += `🎬 *ORÇAMENTO AUDIOVISUAL*\n`;
+          msg += `📅 ${dt} • ${hora} • ${itemCount} ${itemCount === 1 ? "item" : "itens"}\n`;
+          msg += `━━━━━━━━━━━━━━━━\n`;
+
+          Object.entries(grupos).forEach(([k, itens]) => {
+            const emoji = emojiMap[k] || "📌";
+            msg += `\n${emoji} *${(catName[k] || k).toUpperCase()}*\n`;
+            itens.forEach((s) => {
+              const subtotal = s.p * s.qty;
+              msg += `• ${s.n}`;
+              if (s.qty > 1) msg += ` (${s.qty}x)`;
+              msg += ` - R$ ${fmt(subtotal)}\n`;
+            });
+          });
+
+          if (pkgSel) {
+            const p = PKG.find((x) => x.id === pkgSel);
+            if (p) {
+              msg += `\n📦 *PACOTE MENSAL*\n`;
+              msg += `• ${p.n} - R$ ${fmt(p.p)}/mês\n`;
+              msg += `${p.eco}\n`;
+            }
+          }
+
+          msg += `\n━━━━━━━━━━━━━━━━\n`;
+          msg += `💵 *TOTAL: R$ ${fmt(total())}*\n`;
+          msg += `━━━━━━━━━━━━━━━━\n\n`;
+
+          msg += `✅ *Próximos passos:*\n`;
+          msg += `• Análise em até 2h\n`;
+          msg += `• Alinhamento do projeto\n`;
+          msg += `• Ajustes necessários\n`;
+          msg += `• Início da produção\n\n`;
+
+          msg += `💬 Responda para confirmar ou tirar dúvidas!\n`;
+          msg += `🚀 Vamos criar conteúdo de alta performance?`;
+        } else {
+          // MENSAGEM CLIENTE → Cliente solicitando orçamento
+          msg = `Olá! 👋\n\n`;
+          msg += `Gostaria de solicitar um orçamento para os seguintes serviços:\n\n`;
+          msg += `📋 *SERVIÇOS DE INTERESSE*\n`;
+          msg += `━━━━━━━━━━━━━━━━\n`;
+
+          Object.entries(grupos).forEach(([k, itens]) => {
+            const emoji = emojiMap[k] || "📌";
+            msg += `\n${emoji} *${(catName[k] || k).toUpperCase()}*\n`;
+            itens.forEach((s) => {
+              msg += `• ${s.n}`;
+              if (s.qty > 1) msg += ` (${s.qty}x)`;
+              msg += `\n`;
+            });
+          });
+
+          if (pkgSel) {
+            const p = PKG.find((x) => x.id === pkgSel);
+            if (p) {
+              msg += `\n📦 *PACOTE MENSAL*\n`;
+              msg += `• ${p.n}\n`;
+            }
+          }
+
+          msg += `\n━━━━━━━━━━━━━━━━\n`;
+          msg += `📝 Total de ${itemCount} ${itemCount === 1 ? "item" : "itens"} selecionado${itemCount === 1 ? "" : "s"}\n`;
+          msg += `━━━━━━━━━━━━━━━━\n\n`;
+
+          msg += `Poderia me enviar um orçamento detalhado?\n\n`;
+          msg += `Aguardo retorno! 😊`;
+        }
+
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+        window.open(whatsappUrl, "_blank");
+      }
+
+      // SISTEMA DE NAVEGAÇÃO GUIADA (Tab Todos)
+      const guideStructure = {
+        imagem: {
+          title: "Imagem",
+          subs: [
+            {
+              id: "edicao-img",
+              title: "Edição",
+              desc: "Tratamento e pós-produção de imagens",
+              icon: "wand-2",
+              cats: ["edicao", "foto"],
+            },
+            {
+              id: "criacao-img",
+              title: "Criação",
+              desc: "Design gráfico e artes visuais",
+              icon: "palette",
+              cats: ["organico", "inst"],
+            },
+            {
+              id: "fotografia",
+              title: "Fotografia",
+              desc: "Ensaios e registros fotográficos",
+              icon: "camera",
+              cats: ["foto"],
+            },
+          ],
+        },
+        video: {
+          title: "Vídeo",
+          subs: [
+            {
+              id: "edicao-vid",
+              title: "Edição",
+              desc: "Cortes, efeitos e finalização",
+              icon: "scissors",
+              cats: ["edicao"],
+            },
+            {
+              id: "gravacao",
+              title: "Gravação",
+              desc: "Produção e captação de vídeos",
+              icon: "video",
+              cats: ["criativos", "organico", "vsl", "lanc", "evento", "inst"],
+            },
+            {
+              id: "motion",
+              title: "Motion Design",
+              desc: "Animações e motion graphics",
+              icon: "sparkles",
+              cats: ["motion", "criativos", "organico"],
+            },
+          ],
+        },
+        sistemas: {
+          title: "Sistemas",
+          subs: [
+            {
+              id: "sites",
+              title: "Sites",
+              desc: "Landing pages e websites institucionais",
+              icon: "globe",
+              cats: ["inst"],
+            },
+            {
+              id: "app",
+              title: "App",
+              desc: "Aplicativos mobile e web",
+              icon: "smartphone",
+              cats: ["inst"],
+            },
+            {
+              id: "solucoes",
+              title: "Soluções",
+              desc: "Sistemas customizados sob medida",
+              icon: "cpu",
+              cats: ["inst", "consult"],
+            },
+          ],
+        },
+      };
+
+      let currentCategory = "";
+      let currentSub = "";
+
+      function showNivel2(category) {
+        currentCategory = category;
+        const struct = guideStructure[category];
+
+        // Define a cor baseado na categoria
+        const colorMap = {
+          imagem: "var(--color-imagem)",
+          video: "var(--color-video)",
+          sistemas: "var(--color-sistemas)",
+        };
+        const categoryColor = colorMap[category] || "var(--accent)";
+
+        document.getElementById("nivel1").style.display = "none";
+        document.getElementById("nivel2").style.display = "block";
+        document.getElementById("nivel2Title").textContent = struct.title;
+
+        const cardsHTML = struct.subs
+          .map(
+            (sub) => `
+        <div class="svc svc--guide svc--guide-nivel1" onclick="showNivel3('${category}', '${sub.id}')">
+            <div class="svc__top">
+                <div class="svc__icon" style="color:${categoryColor}"><i data-lucide="${sub.icon}" class="icon"></i></div>
+                <div class="svc__info">
+                    <div class="svc__header"><span class="svc__name">${sub.title}</span></div>
+                    <div class="svc__desc">${sub.desc}</div>
+                </div>
+            </div>
+            <i data-lucide="chevron-right" class="icon"></i>
+        </div>
+    `,
+          )
+          .join("");
+
+        document.getElementById("nivel2Cards").innerHTML = cardsHTML;
+        lucide.createIcons();
+      }
+
+      function showNivel3(category, subId) {
+        currentSub = subId;
+        const struct = guideStructure[category];
+        const sub = struct.subs.find((s) => s.id === subId);
+
+        document.getElementById("nivel2").style.display = "none";
+        document.getElementById("nivel3").style.display = "block";
+        document.getElementById("nivel3Title").textContent = sub.title;
+
+        // Filtra serviços baseado nas categorias definidas
+        let services = [];
+        sub.cats.forEach((catKey) => {
+          if (D[catKey]) {
+            services = services.concat(D[catKey]);
+          }
+        });
+
+        // Aplica filtro de tipo se necessário
+        if (category === "imagem") {
+          services = services.filter((s) => s.tipo === "imagem");
+        } else if (category === "video") {
+          services = services.filter((s) => s.tipo === "video");
+        } else if (category === "sistemas") {
+          services = services.filter((s) => s.tipo === "sistema");
+        }
+
+        document.getElementById("nivel3Grid").innerHTML = services
+          .map(renderSvc)
+          .join("");
+        lucide.createIcons();
+      }
+
+      function backToNivel1() {
+        document.getElementById("nivel2").style.display = "none";
+        document.getElementById("nivel1").style.display = "grid";
+        currentCategory = "";
+      }
+
+      function backToNivel2() {
+        document.getElementById("nivel3").style.display = "none";
+        document.getElementById("nivel2").style.display = "block";
+        currentSub = "";
+      }
+
+      document.querySelectorAll(".modal").forEach((m) => {
+        m.addEventListener("click", (e) => {
+          if (e.target === m) closeModal(m.id);
+        });
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape")
+          document
+            .querySelectorAll(".modal--show")
+            .forEach((m) => closeModal(m.id));
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("filter-todos");
+        render();
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
