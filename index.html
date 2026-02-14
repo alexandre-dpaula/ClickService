@@ -145,6 +145,17 @@
         font-stretch: expanded;
         font-feature-settings: "ss01" on;
       }
+      .brand-mark {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1px;
+        letter-spacing: 0.1px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+          Roboto, sans-serif;
+        font-stretch: expanded;
+        font-feature-settings: "ss01" on;
+      }
       .brand-logo__click {
         font-weight: 700;
         color: var(--txt);
@@ -153,6 +164,10 @@
         font-weight: 300;
         font-variation-settings: "wght" 300;
         color: #fff;
+      }
+      .brand-mark--dark .brand-logo__click,
+      .brand-mark--dark .brand-logo__service {
+        color: #000;
       }
       .header__btn {
         width: 40px;
@@ -1800,12 +1815,16 @@
         gap: 16px;
         margin-bottom: 16px;
       }
+      .invoice-head__main {
+        margin-top: 6px;
+      }
       .invoice-kicker {
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: #475569;
+        margin-top: 6px;
         margin-bottom: 6px;
       }
       .invoice-title {
@@ -1841,6 +1860,16 @@
       .invoice-meta__value {
         font-weight: 700;
         color: #0f172a;
+      }
+      @media (max-width: 560px) {
+        .invoice-head {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .invoice-meta {
+          width: 100%;
+          min-width: 0;
+        }
       }
       .invoice-fields {
         display: grid;
@@ -2824,13 +2853,16 @@
           <div class="invoice-layout">
             <section class="invoice-sheet" id="invoicePrintArea">
               <div class="invoice-head">
-                <div>
-                  <p class="invoice-kicker">Orçamento profissional</p>
-                  <h3 class="invoice-title">Orçamento ClickService+</h3>
-                  <p class="invoice-subtitle">
-                    Documento automático com os itens selecionados no seu pedido.
-                  </p>
-                </div>
+              <div class="invoice-head__main">
+                <p class="invoice-kicker">Orçamento profissional</p>
+                <h3 class="invoice-title brand-mark brand-mark--dark">
+                  <span class="brand-logo__click">Click</span
+                  ><span class="brand-logo__service">Service+</span>
+                </h3>
+                <p class="invoice-subtitle">
+                  Documento automático com os itens selecionados no seu pedido.
+                </p>
+              </div>
                 <div class="invoice-meta">
                   <div class="invoice-meta__row">
                     <span class="invoice-meta__label">Nº</span>
