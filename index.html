@@ -20,10 +20,7 @@
       property="og:description"
       content="Monte seu orçamento personalizado para produção audiovisual e marketing digital."
     />
-    <meta
-      property="og:image"
-      content="https://clickserviceplus.vercel.app/public/og-image.jpg"
-    />
+    <meta property="og:image" content="public/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Seu Orçamento" />
@@ -39,10 +36,7 @@
       name="twitter:description"
       content="Monte seu orçamento personalizado para produção audiovisual e marketing digital."
     />
-    <meta
-      name="twitter:image"
-      content="https://clickserviceplus.vercel.app/public/og-image.jpg"
-    />
+    <meta name="twitter:image" content="public/og-image.jpg" />
 
     <link
       rel="icon"
@@ -83,6 +77,7 @@
         --r-md: 14px;
         --r-lg: 20px;
         --r-xl: 28px;
+        --og-image: url("public/og-image.jpg");
         --r-full: 100px;
       }
       html {
@@ -155,8 +150,8 @@
         color: var(--txt);
       }
       .brand-logo__service {
-        font-weight: 400;
-        font-variation-settings: "wght" 400;
+        font-weight: 300;
+        font-variation-settings: "wght" 300;
         color: #fff;
       }
       .header__btn {
@@ -177,47 +172,6 @@
         background: var(--bg5);
         color: var(--txt);
       }
-      .header__btn--filter {
-        width: auto;
-        padding: 0 16px;
-        border-radius: var(--r-full);
-        font-size: 13px;
-        font-weight: 600;
-        animation: pulseOrange 2s ease-in-out infinite;
-      }
-      .header__btn--filter::before {
-        content: "";
-        position: absolute;
-        inset: -4px;
-        border-radius: var(--r-full);
-        border: 2px solid var(--accent);
-        opacity: 0;
-        animation: pulseRing 2s ease-in-out infinite;
-      }
-      @keyframes pulseOrange {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(131, 77, 251, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 0 8px rgba(131, 77, 251, 0);
-        }
-      }
-      @keyframes pulseRing {
-        0% {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-        50% {
-          opacity: 0.6;
-          transform: scale(1.15);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.3);
-        }
-      }
-
       .container {
         max-width: 960px;
         margin: 0 auto;
@@ -286,7 +240,8 @@
         transition: 0.2s;
       }
       .search__input::placeholder {
-        color: var(--txt3);
+        color: var(--txt2);
+        opacity: 0.9;
       }
       .search__input:focus {
         outline: none;
@@ -891,7 +846,7 @@
         cursor: pointer;
         transition: 0.2s;
       }
-      .svc:hover {
+      .svc:not(.svc--guide):hover {
         background: var(--bg5);
         border-color: var(--brd2);
       }
@@ -933,6 +888,84 @@
         position: relative;
         z-index: 1;
         flex-shrink: 0;
+      }
+
+      .home-card {
+        grid-column: 1 / -1;
+        padding: 0;
+        border: 1px solid var(--brd);
+        border-radius: var(--r-lg);
+        background: var(--bg4);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition: 0.2s;
+        text-align: left;
+        appearance: none;
+        font: inherit;
+        color: inherit;
+      }
+      .home-card:hover {
+        border-color: var(--brd2);
+        background: var(--bg5);
+      }
+      .home-card__media {
+        height: 120px;
+        background-image: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.1)
+          ),
+          var(--og-image);
+        background-size: cover;
+        background-position: center;
+      }
+      .home-card__body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px;
+      }
+      .home-card__text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .home-card__brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1px;
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+          Roboto, sans-serif;
+        font-stretch: expanded;
+        font-feature-settings: "ss01" on;
+      }
+      .home-card__title {
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .home-card__desc {
+        font-size: 12px;
+        color: var(--txt3);
+      }
+      .home-card__action {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--txt);
+        white-space: nowrap;
+      }
+      @media (min-width: 580px) {
+        .home-card__media {
+          height: 140px;
+        }
       }
 
       /* Cards coloridos do nível 1 */
@@ -1743,6 +1776,218 @@
         flex-shrink: 0;
       }
 
+      /* Invoice Template */
+      .invoice-modal .modal__box {
+        max-width: 980px;
+      }
+      .invoice-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .invoice-sheet {
+        background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
+        color: #0f172a;
+        border-radius: 18px;
+        border: 1px solid #d7ddea;
+        padding: 20px;
+        box-shadow: 0 14px 36px rgba(7, 12, 28, 0.2);
+      }
+      .invoice-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .invoice-kicker {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #475569;
+        margin-bottom: 6px;
+      }
+      .invoice-title {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .invoice-subtitle {
+        font-size: 13px;
+        color: #475569;
+        margin-top: 4px;
+      }
+      .invoice-meta {
+        min-width: 210px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+      .invoice-meta__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .invoice-meta__row:last-child {
+        margin-bottom: 0;
+      }
+      .invoice-meta__label {
+        color: #64748b;
+      }
+      .invoice-meta__value {
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .invoice-fields {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      @media (min-width: 820px) {
+        .invoice-fields {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .invoice-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .invoice-field__label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      .invoice-field__input {
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: #fff;
+        padding: 11px 12px;
+        font-size: 14px;
+        color: #0f172a;
+        font-family: inherit;
+      }
+      .invoice-field__input:focus {
+        outline: none;
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+      }
+      .invoice-block {
+        border: 1px solid #dbe2ef;
+        border-radius: 12px;
+        background: #fff;
+        padding: 14px;
+        margin-bottom: 14px;
+      }
+      .invoice-block__title {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #334155;
+        margin-bottom: 8px;
+      }
+      .invoice-request {
+        font-size: 14px;
+        color: #334155;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .invoice-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .invoice-item {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 12px;
+        align-items: center;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #f8fafc;
+      }
+      .invoice-item__name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .invoice-item__meta {
+        font-size: 11px;
+        color: #64748b;
+        margin-top: 3px;
+      }
+      .invoice-item__qty {
+        font-size: 12px;
+        font-weight: 700;
+        color: #475569;
+      }
+      .invoice-item__price {
+        font-size: 14px;
+        font-weight: 800;
+        color: #0f172a;
+      }
+      .invoice-total {
+        margin-top: 12px;
+        border-top: 1px solid #dbe2ef;
+        padding-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .invoice-total__label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #64748b;
+      }
+      .invoice-total__value {
+        font-size: 24px;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.02em;
+      }
+      .invoice-info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      @media (min-width: 880px) {
+        .invoice-info-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .invoice-info-card {
+        border: 1px solid #dbe2ef;
+        border-radius: 12px;
+        background: #fff;
+        padding: 14px;
+      }
+      .invoice-info-card p {
+        margin-bottom: 8px;
+        color: #334155;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .invoice-info-card p:last-child {
+        margin-bottom: 0;
+      }
+      .invoice-list {
+        margin: 0;
+        padding-left: 16px;
+        color: #334155;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
       /* Summary Cards */
       .sum-cards {
         display: flex;
@@ -2138,6 +2383,26 @@
       <div class="tab-content tab-content--active" id="tab-todos">
         <!-- Nível 1: Categorias Principais -->
         <div id="nivel1" class="grid">
+          <button class="home-card" type="button" onclick="switchTab('pkg')">
+            <div class="home-card__media"></div>
+            <div class="home-card__body">
+              <div class="home-card__text">
+                <div class="home-card__brand">
+                  <span class="brand-logo__click">Click</span>
+                  <span class="brand-logo__service">Service+</span>
+                </div>
+                <div class="home-card__title">Pacotes prontos para sua empresa</div>
+                <div class="home-card__desc">
+                  Planos mensais com entregas fixas e preço fechado.
+                </div>
+              </div>
+              <div class="home-card__action">
+                <span>Ver pacotes</span>
+                <i data-lucide="arrow-right" class="icon-sm"></i>
+              </div>
+            </div>
+          </button>
+
           <div
             class="svc svc--guide svc--guide-nivel1 svc--guide-imagem"
             onclick="showNivel2('imagem')"
@@ -2497,12 +2762,12 @@
             </svg>
             Resumo
           </button>
-          <button class="bar__btn bar__btn--pri" onclick="sendWpp()">
+          <button class="bar__btn bar__btn--pri" onclick="openInvoice()">
             <svg class="icon" viewBox="0 0 24 24">
-              <path d="m22 2-7 20-4-9-9-4Z" />
-              <path d="M22 2 11 13" />
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
             </svg>
-            WhatsApp
+            Gerar Orçamento
           </button>
         </div>
       </div>
@@ -2532,11 +2797,149 @@
           <button
             class="bar__btn bar__btn--pri"
             style="flex: 1"
-            onclick="sendWpp()"
+            onclick="openInvoice()"
           >
             <svg class="icon" viewBox="0 0 24 24">
-              <path d="m22 2-7 20-4-9-9-4Z" /></svg
-            >WhatsApp
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" /></svg
+            >Orçamento
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal invoice-modal" id="modalInvoice">
+      <div class="modal__box">
+        <div class="modal__handle"></div>
+        <div class="modal__head">
+          <h2 class="modal__title">Orçamento</h2>
+          <button class="modal__close" onclick="closeModal('modalInvoice')">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="invoice-layout">
+            <section class="invoice-sheet" id="invoicePrintArea">
+              <div class="invoice-head">
+                <div>
+                  <p class="invoice-kicker">Orçamento profissional</p>
+                  <h3 class="invoice-title">Orçamento ClickService+</h3>
+                  <p class="invoice-subtitle">
+                    Documento automático com os itens selecionados no seu pedido.
+                  </p>
+                </div>
+                <div class="invoice-meta">
+                  <div class="invoice-meta__row">
+                    <span class="invoice-meta__label">Nº</span>
+                    <span class="invoice-meta__value" id="invoiceNumber">-</span>
+                  </div>
+                  <div class="invoice-meta__row">
+                    <span class="invoice-meta__label">Data</span>
+                    <span class="invoice-meta__value" id="invoiceDate">-</span>
+                  </div>
+                  <div class="invoice-meta__row">
+                    <span class="invoice-meta__label">Itens</span>
+                    <span class="invoice-meta__value" id="invoiceItemCount">0</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="invoice-fields">
+                <div class="invoice-field">
+                  <label class="invoice-field__label" for="invoiceClientName">Nome</label>
+                  <input
+                    class="invoice-field__input"
+                    id="invoiceClientName"
+                    type="text"
+                    placeholder="Nome completo"
+                  />
+                </div>
+                <div class="invoice-field">
+                  <label class="invoice-field__label" for="invoiceClientEmail">Email</label>
+                  <input
+                    class="invoice-field__input"
+                    id="invoiceClientEmail"
+                    type="email"
+                    placeholder="email@exemplo.com"
+                  />
+                </div>
+                <div class="invoice-field">
+                  <label class="invoice-field__label" for="invoiceClientContact">Contato</label>
+                  <input
+                    class="invoice-field__input"
+                    id="invoiceClientContact"
+                    type="text"
+                    placeholder="(00) 00000-0000"
+                  />
+                </div>
+              </div>
+
+              <div class="invoice-block">
+                <div class="invoice-block__title">Resumo da Solicitação</div>
+                <p class="invoice-request" id="invoiceRequest">
+                  Nenhuma solicitação preenchida.
+                </p>
+                <div class="invoice-items" id="invoiceItems"></div>
+                <div class="invoice-total">
+                  <span class="invoice-total__label">Total estimado</span>
+                  <span class="invoice-total__value" id="invoiceTotal">R$ 0</span>
+                </div>
+              </div>
+
+              <div class="invoice-info-grid">
+                <article class="invoice-info-card">
+                  <div class="invoice-block__title">Dados do Fornecedor</div>
+                  <p id="invoiceSupplierName">ClickService+ | Soluções Criativas</p>
+                  <p id="invoiceSupplierEmail">comercial@clickserviceplus.com</p>
+                  <p id="invoiceSupplierContact">(27) 99999-0000 | Vila Velha/ES</p>
+                </article>
+                <article class="invoice-info-card">
+                  <div class="invoice-block__title">Instruções pós-envio</div>
+                  <ul class="invoice-list">
+                    <li>Confirmação inicial e alinhamento em até 2 horas úteis.</li>
+                    <li>Refino de escopo e cronograma com aprovações.</li>
+                    <li>Início da produção após validação final do pedido.</li>
+                  </ul>
+                </article>
+                <article class="invoice-info-card">
+                  <div class="invoice-block__title">Formas de Pagamento</div>
+                  <ul class="invoice-list">
+                    <li>PIX à vista</li>
+                    <li>Cartão de crédito (parcelado)</li>
+                    <li>Boleto para PJ</li>
+                  </ul>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button
+            class="bar__btn bar__btn--sec"
+            style="flex: 1"
+            onclick="generateInvoicePDF()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M12 18v-6" />
+              <path d="m9 15 3-3 3 3" />
+            </svg>
+            Gerar PDF
+          </button>
+          <button
+            class="bar__btn bar__btn--pri"
+            style="flex: 1"
+            onclick="sendInvoiceWpp()"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="m22 2-7 20-4-9-9-4Z" />
+              <path d="M22 2 11 13" />
+            </svg>
+            WhatsApp
           </button>
         </div>
       </div>
@@ -2855,108 +3258,6 @@
               <polyline points="20 6 9 17 4 12" /></svg
             >Entendi!
           </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal" id="modalFilter">
-      <div class="modal__box" style="max-width: 500px">
-        <div class="modal__handle"></div>
-        <div class="modal__head">
-          <h2 class="modal__title">Filtros</h2>
-          <button class="modal__close" onclick="closeModal('modalFilter')">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-        </div>
-        <div class="modal__body">
-          <div style="padding: 20px 0">
-            <!-- Filtro de Tipo -->
-            <div style="text-align: center; margin-bottom: 32px">
-              <div class="filter__label">Tipo de Serviço</div>
-              <div class="filter">
-                <div class="filter__group">
-                  <button
-                    class="filter__option filter__option--active"
-                    data-filter="todos"
-                    onclick="setFilter('todos')"
-                  >
-                    Todos
-                  </button>
-                  <button
-                    class="filter__option"
-                    data-filter="imagem"
-                    onclick="setFilter('imagem')"
-                  >
-                    Imagem
-                  </button>
-                  <button
-                    class="filter__option"
-                    data-filter="video"
-                    onclick="setFilter('video')"
-                  >
-                    Vídeo
-                  </button>
-                  <div
-                    class="filter__bg"
-                    id="filterBg"
-                    style="left: 4px; width: 72px"
-                  ></div>
-                </div>
-              </div>
-              <div class="filter__desc">Filtre por tipo de mídia</div>
-            </div>
-
-            <!-- Filtro de Categoria -->
-            <div style="text-align: center">
-              <div class="filter__label">Categoria</div>
-              <div class="filter__tabs">
-                <button
-                  class="filter__tab filter__tab--active"
-                  data-tab="todos"
-                  onclick="switchTabAndClose('todos')"
-                >
-                  <i data-lucide="grid-3x3" class="icon-sm"></i>
-                  <span>Todos</span>
-                </button>
-                <button
-                  class="filter__tab"
-                  data-tab="social"
-                  onclick="switchTabAndClose('social')"
-                >
-                  <i data-lucide="sparkles" class="icon-sm"></i>
-                  <span>Rede Social</span>
-                </button>
-                <button
-                  class="filter__tab"
-                  data-tab="mkt"
-                  onclick="switchTabAndClose('mkt')"
-                >
-                  <i data-lucide="trending-up" class="icon-sm"></i>
-                  <span>Marketing</span>
-                </button>
-                <button
-                  class="filter__tab"
-                  data-tab="emp"
-                  onclick="switchTabAndClose('emp')"
-                >
-                  <i data-lucide="building-2" class="icon-sm"></i>
-                  <span>Sua Empresa</span>
-                </button>
-                <button
-                  class="filter__tab"
-                  data-tab="pkg"
-                  onclick="switchTabAndClose('pkg')"
-                >
-                  <i data-lucide="package" class="icon-sm"></i>
-                  <span>Pacotes</span>
-                </button>
-              </div>
-              <div class="filter__desc">Escolha a categoria de serviço</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -3654,6 +3955,7 @@
         foto: "Fotografia",
         motion: "Motion Design",
       };
+      const catLabel = (id) => catName[cat(id)] || cat(id) || "Categoria";
 
       const total = () => {
         let t = 0;
@@ -3691,7 +3993,7 @@
             qtyHtml = `<button class="svc__toggle" onclick="event.stopPropagation();changeQty('${s.id}',1)">+</button>`;
           }
         } else {
-          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggle('${s.id}')">${isSel ? "✓" : ""}</button>`;
+          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggle('${s.id}')">${isSel ? '<i data-lucide="check" class="icon-sm"></i>' : ""}</button>`;
         }
 
         return `<div class="svc${isSel ? " svc--sel" : ""}" data-id="${s.id}">
@@ -3749,17 +4051,6 @@
         const todosTabActive = document
           .getElementById("tab-todos")
           ?.classList.contains("tab-content--active");
-
-        // Renderiza tab Todos (todos os serviços)
-        const todosEl = document.getElementById("g-todos");
-        if (todosEl) {
-          // Se filtro "todos" está selecionado E a tab "Todos" está ativa, não mostra nada (só através da busca)
-          if (currentFilter === "todos" && todosTabActive) {
-            todosEl.innerHTML = "";
-          } else {
-            todosEl.innerHTML = filterServices(all()).map(renderSvc).join("");
-          }
-        }
 
         // Renderiza categorias específicas (SEMPRE renderiza, exceto quando tab Todos está ativa)
         Object.keys(D).forEach((k) => {
@@ -3868,16 +4159,6 @@
         // Re-renderiza para aplicar a lógica de mostrar/esconder baseado na tab ativa
         render();
       }
-      function switchTabAndClose(t) {
-        switchTab(t);
-        // Atualiza os botões do modal de filtros
-        document
-          .querySelectorAll(".filter__tab")
-          .forEach((el) =>
-            el.classList.toggle("filter__tab--active", el.dataset.tab === t),
-          );
-        closeModal("modalFilter");
-      }
       function toggleAcc(el) {
         el.parentElement.classList.toggle("acc--open");
       }
@@ -3946,7 +4227,7 @@
           (s) =>
             s.n.toLowerCase().includes(q) ||
             s.d.toLowerCase().includes(q) ||
-            catName[cat(s.id)].toLowerCase().includes(q),
+            catLabel(s.id).toLowerCase().includes(q),
         );
 
         // Atualiza contador
@@ -3989,7 +4270,7 @@
             <button class="svc__qty-btn" onclick="event.stopPropagation();changeQtySearch('${s.id}',1)">+</button>
         </div>`;
         } else {
-          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggleSearch('${s.id}')">${isSel ? "✓" : ""}</button>`;
+          qtyHtml = `<button class="svc__toggle ${isSel ? "svc__toggle--on" : ""}" onclick="event.stopPropagation();toggleSearch('${s.id}')">${isSel ? '<i data-lucide="check" class="icon-sm"></i>' : ""}</button>`;
         }
 
         return `<div class="search__card${isSel ? " search__card--sel" : ""}" onclick="${!isSel ? `addFromSearch('${s.id}')` : ""}" title="${!isSel ? "Clique para adicionar" : "Já adicionado"}">
@@ -4000,7 +4281,7 @@
                 </div>
                 <div class="search__card-info">
                     <div class="search__card-name">${s.n}</div>
-                    <div class="search__card-cat">${catName[cat(s.id)]}</div>
+                    <div class="search__card-cat">${catLabel(s.id)}</div>
                 </div>
             </div>
         </div>
@@ -4088,14 +4369,14 @@
                     <button class="svc__qty-btn" onclick="changeQtySum('${s.id}',1)">+</button>
                 </div>`;
             } else {
-              qtyHtml = `<button class="sum-card__remove" onclick="removeFromSum('${s.id}')">✕</button>`;
+              qtyHtml = `<button class="sum-card__remove" onclick="removeFromSum('${s.id}')"><i data-lucide="x" class="icon-sm"></i></button>`;
             }
 
             html += `<div class="sum-card">
                 <div class="sum-card__top">
                     <div class="sum-card__info">
                         <div class="sum-card__name">${s.n}</div>
-                        <div class="sum-card__cat">${catName[cat(s.id)]}</div>
+                        <div class="sum-card__cat">${catLabel(s.id)}</div>
                     </div>
                     ${qtyHtml}
                 </div>
@@ -4115,7 +4396,7 @@
                             <div class="sum-card__name">${p.n}</div>
                             <div class="sum-card__cat">Pacote</div>
                         </div>
-                        <button class="sum-card__remove" onclick="removePkgSum()">✕</button>
+                        <button class="sum-card__remove" onclick="removePkgSum()"><i data-lucide="x" class="icon-sm"></i></button>
                     </div>
                     <div class="sum-card__foot">
                         <div class="sum-card__unit">Mensal</div>
@@ -4129,6 +4410,7 @@
           html += `<div class="sum-total"><span class="sum-total__label">Total</span><span class="sum-total__value">R$ ${fmt(total())}</span></div>`;
           body.innerHTML = html;
         }
+        if (typeof lucide !== "undefined") lucide.createIcons();
         document.getElementById("modalSum").classList.add("modal--show");
         document.body.style.overflow = "hidden";
       }
@@ -4226,25 +4508,6 @@
 
       function openHelp() {
         document.getElementById("modalHelp").classList.add("modal--show");
-        document.body.style.overflow = "hidden";
-        setTimeout(() => {
-          if (typeof lucide !== "undefined") lucide.createIcons();
-        }, 100);
-      }
-
-      function openFilter() {
-        // Sincroniza o estado das tabs no modal com as tabs principais
-        const activeTab = document.querySelector(".tab--active");
-        if (activeTab) {
-          const tabName = activeTab.dataset.tab;
-          document.querySelectorAll(".filter__tab").forEach((el) => {
-            el.classList.toggle(
-              "filter__tab--active",
-              el.dataset.tab === tabName,
-            );
-          });
-        }
-        document.getElementById("modalFilter").classList.add("modal--show");
         document.body.style.overflow = "hidden";
         setTimeout(() => {
           if (typeof lucide !== "undefined") lucide.createIcons();
@@ -4353,7 +4616,336 @@
         }
       }
 
-      function sendWpp() {
+      const INVOICE_STORAGE_KEY = "clickservice_invoice_client";
+      const SUPPLIER_INFO = {
+        name: "ClickService+ | Soluções Criativas",
+        email: "comercial@clickserviceplus.com",
+        contact: "(27) 99999-0000 | Vila Velha/ES",
+      };
+
+      function getInvoiceClientData() {
+        return {
+          nome: (document.getElementById("invoiceClientName")?.value || "").trim(),
+          email: (document.getElementById("invoiceClientEmail")?.value || "").trim(),
+          contato: (
+            document.getElementById("invoiceClientContact")?.value || ""
+          ).trim(),
+        };
+      }
+
+      function saveInvoiceClientData() {
+        try {
+          localStorage.setItem(
+            INVOICE_STORAGE_KEY,
+            JSON.stringify(getInvoiceClientData()),
+          );
+        } catch (e) {}
+      }
+
+      function loadInvoiceClientData() {
+        try {
+          const raw = localStorage.getItem(INVOICE_STORAGE_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          if (data.nome) document.getElementById("invoiceClientName").value = data.nome;
+          if (data.email)
+            document.getElementById("invoiceClientEmail").value = data.email;
+          if (data.contato)
+            document.getElementById("invoiceClientContact").value = data.contato;
+        } catch (e) {}
+      }
+
+      function getInvoiceSelectedItems() {
+        const items = [];
+        Object.entries(sel).forEach(([id, qty]) => {
+          const s = get(id);
+          if (!s) return;
+          const catKey = cat(id);
+          items.push({
+            name: s.n,
+            category: catName[catKey] || catKey || "Categoria",
+            qty,
+            subtotal: s.p * qty,
+            isConsult: s.p === 0,
+          });
+        });
+        if (pkgSel) {
+          const p = PKG.find((x) => x.id === pkgSel);
+          if (p) {
+            items.push({
+              name: p.n,
+              category: "Pacote Mensal",
+              qty: 1,
+              subtotal: p.p,
+              isConsult: false,
+            });
+          }
+        }
+        return items;
+      }
+
+      function renderInvoiceTemplate() {
+        const items = getInvoiceSelectedItems();
+        const qtyTotal = Object.values(sel).reduce((acc, q) => acc + q, 0) + (pkgSel ? 1 : 0);
+        const now = new Date();
+        const categories = [...new Set(items.map((item) => item.category))];
+
+        document.getElementById("invoiceNumber").textContent =
+          "ORC-" + now.getTime().toString().slice(-6);
+        document.getElementById("invoiceDate").textContent =
+          now.toLocaleDateString("pt-BR");
+        document.getElementById("invoiceItemCount").textContent = String(qtyTotal);
+        document.getElementById("invoiceRequest").textContent =
+          qtyTotal > 0
+            ? `Solicitação com ${qtyTotal} item(ns), incluindo ${categories.join(", ")}.`
+            : "Nenhuma solicitação preenchida.";
+
+        document.getElementById("invoiceSupplierName").textContent =
+          SUPPLIER_INFO.name;
+        document.getElementById("invoiceSupplierEmail").textContent =
+          SUPPLIER_INFO.email;
+        document.getElementById("invoiceSupplierContact").textContent =
+          SUPPLIER_INFO.contact;
+
+        const itemsEl = document.getElementById("invoiceItems");
+        if (!items.length) {
+          itemsEl.innerHTML =
+            '<div class="invoice-item"><div class="invoice-item__name">Nenhum item selecionado</div><div class="invoice-item__qty">-</div><div class="invoice-item__price">R$ 0</div></div>';
+          document.getElementById("invoiceTotal").textContent = "R$ 0";
+          return;
+        }
+
+        itemsEl.innerHTML = items
+          .map((item) => {
+            const priceLabel = item.isConsult
+              ? "Sob consulta"
+              : `R$ ${fmt(item.subtotal)}`;
+            return `<div class="invoice-item">
+              <div>
+                <div class="invoice-item__name">${item.name}</div>
+                <div class="invoice-item__meta">${item.category}</div>
+              </div>
+              <div class="invoice-item__qty">${item.qty}x</div>
+              <div class="invoice-item__price">${priceLabel}</div>
+            </div>`;
+          })
+          .join("");
+
+        document.getElementById("invoiceTotal").textContent = `R$ ${fmt(total())}`;
+      }
+
+      function openInvoice() {
+        if (Object.keys(sel).length === 0 && !pkgSel)
+          return toast("Selecione itens primeiro");
+        renderInvoiceTemplate();
+        closeModal("modalSum");
+        document.getElementById("modalInvoice").classList.add("modal--show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function sendInvoiceWpp() {
+        const clientData = getInvoiceClientData();
+        if (!clientData.nome || !clientData.contato) {
+          return toast("Preencha nome e contato para enviar no WhatsApp.");
+        }
+        saveInvoiceClientData();
+        sendWpp(clientData);
+      }
+
+      function generateInvoicePDF() {
+        renderInvoiceTemplate();
+        const client = getInvoiceClientData();
+        const items = getInvoiceSelectedItems();
+        const hasConsult = items.some((item) => item.isConsult);
+        const subtotal = items
+          .filter((item) => !item.isConsult)
+          .reduce((acc, item) => acc + item.subtotal, 0);
+
+        const popup = window.open("", "_blank");
+        if (!popup) return toast("Permita pop-up para gerar o PDF.");
+
+        const doc = popup.document;
+        doc.open();
+        doc.write("");
+        doc.close();
+        if (doc.documentElement) doc.documentElement.lang = "pt-BR";
+        doc.title = "Orçamento ClickService+";
+
+        const metaCharset = doc.createElement("meta");
+        metaCharset.setAttribute("charset", "utf-8");
+        doc.head.appendChild(metaCharset);
+
+        const metaViewport = doc.createElement("meta");
+        metaViewport.setAttribute("name", "viewport");
+        metaViewport.setAttribute(
+          "content",
+          "width=device-width,initial-scale=1",
+        );
+        doc.head.appendChild(metaViewport);
+
+        const style = doc.createElement("style");
+        style.textContent = [
+          "@page { size: A4; margin: 16mm; }",
+          "*,*::before,*::after{ box-sizing: border-box; }",
+          "body { margin: 0; font-family: 'SF Pro Text','Segoe UI',Arial,sans-serif; color: #0f172a; background: #fff; }",
+          ".invoice-print { max-width: 980px; margin: 0 auto; }",
+          ".invoice-header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; border-bottom: 2px solid #0f172a; padding-bottom: 14px; }",
+          ".brand { font-size: 18px; font-weight: 700; }",
+          ".brand__click { font-weight: 700; }",
+          ".brand__service { font-weight: 300; }",
+          ".brand small { display: block; font-size: 11px; font-weight: 500; color: #6b7280; margin-top: 3px; }",
+          ".title-block { text-align: right; }",
+          ".title-block h1 { margin: 0; font-size: 28px; letter-spacing: 0; }",
+          ".title-block span { display: block; font-size: 12px; color: #6b7280; margin-top: 4px; }",
+          ".info-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin: 16px 0 12px; }",
+          ".info-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #f9fafb; }",
+          ".info-card h3 { margin: 0 0 6px 0; font-size: 11px; letter-spacing: 0; text-transform: uppercase; color: #111827; }",
+          ".info-card p { margin: 0 0 4px 0; font-size: 12px; color: #374151; }",
+          ".info-card p:last-child { margin-bottom: 0; }",
+          ".note { font-size: 12px; color: #4b5563; margin: 10px 0 16px; }",
+          "table { width: 100%; border-collapse: collapse; }",
+          "thead th { font-size: 11px; letter-spacing: 0; text-transform: uppercase; border-bottom: 1px solid #0f172a; padding: 8px 4px; text-align: left; }",
+          "tbody td { padding: 10px 4px; border-bottom: 1px solid #e5e7eb; font-size: 12px; vertical-align: top; }",
+          ".col-right { text-align: right; }",
+          ".totals { display: grid; grid-template-columns: 1fr auto; gap: 16px; margin-top: 16px; align-items: start; }",
+          ".totals-box { border: 2px solid #0f172a; padding: 12px 14px; min-width: 220px; }",
+          ".totals-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }",
+          ".totals-row:last-child { margin-bottom: 0; }",
+          ".totals-total { font-size: 18px; font-weight: 700; }",
+          ".muted { color: #6b7280; font-size: 11px; }",
+          ".footer { margin-top: 18px; border-top: 1px solid #e5e7eb; padding-top: 12px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; font-size: 11px; color: #4b5563; }",
+          ".footer h4 { margin: 0 0 6px 0; font-size: 11px; letter-spacing: 0; text-transform: uppercase; color: #111827; }",
+          ".footer p { margin: 0 0 4px 0; }",
+          "@media screen and (max-width: 720px) {",
+          "  .invoice-print { padding: 16px; }",
+          "  .invoice-header { grid-template-columns: 1fr; }",
+          "  .title-block { text-align: left; margin-top: 8px; }",
+          "  .info-grid { grid-template-columns: 1fr; }",
+          "  .totals { grid-template-columns: 1fr; }",
+          "  .totals-box { width: 100%; }",
+          "  table { display: block; width: 100%; overflow-x: auto; }",
+          "  thead th, tbody td { white-space: nowrap; }",
+          "}",
+          "@media print { body { background: #fff; } }",
+        ].join("\n");
+        doc.head.appendChild(style);
+
+        const esc = (v) =>
+          String(v || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;");
+
+        const number = document.getElementById("invoiceNumber")?.textContent || "-";
+        const date = document.getElementById("invoiceDate")?.textContent || "-";
+        const totalLabel = hasConsult ? "Total estimado" : "Total geral";
+        const totalValue = `R$ ${fmt(total())}`;
+
+        const tableRows = items.length
+          ? items
+              .map((item, idx) => {
+                const price = item.isConsult ? "Sob consulta" : `R$ ${fmt(item.subtotal / item.qty)}`;
+                const lineTotal = item.isConsult ? "Sob consulta" : `R$ ${fmt(item.subtotal)}`;
+                return `<tr>
+                  <td>${idx + 1}</td>
+                  <td>${esc(item.name)}<div class="muted" style="margin-top:2px">${esc(item.category)}</div></td>
+                  <td class="col-right">${item.qty}</td>
+                  <td class="col-right">${price}</td>
+                  <td class="col-right">${lineTotal}</td>
+                </tr>`;
+              })
+              .join("")
+          : `<tr><td>1</td><td>Nenhum item selecionado</td><td class="col-right">-</td><td class="col-right">-</td><td class="col-right">R$ 0</td></tr>`;
+
+        const wrapper = doc.createElement("div");
+        wrapper.className = "invoice-print";
+        wrapper.innerHTML = `
+          <div class="invoice-header">
+            <div class="brand">
+              <span class="brand__click">Click</span><span class="brand__service">Service+</span>
+              <small>Produtora Audiovisual e Soluções Digitais</small>
+            </div>
+            <div class="title-block">
+              <h1>ORÇAMENTO</h1>
+              <span>Data: ${esc(date)}</span>
+              <span>Número: ${esc(number)}</span>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>Cliente</h3>
+              <p>${esc(client.nome || "-")}</p>
+              <p>${esc(client.email || "-")}</p>
+              <p>${esc(client.contato || "-")}</p>
+            </div>
+            <div class="info-card">
+              <h3>Fornecedor</h3>
+              <p>${esc(SUPPLIER_INFO.name)}</p>
+              <p>${esc(SUPPLIER_INFO.email)}</p>
+              <p>${esc(SUPPLIER_INFO.contact)}</p>
+            </div>
+          </div>
+
+          <div class="note">Resumo do pedido gerado a partir da seleção de serviços.</div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>Descrição do item</th>
+                <th class="col-right">Qtd</th>
+                <th class="col-right">Preço</th>
+                <th class="col-right">Total</th>
+              </tr>
+            </thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+
+          <div class="totals">
+            <div></div>
+            <div class="totals-box">
+              <div class="totals-row"><span>Subtotal</span><span>R$ ${fmt(subtotal)}</span></div>
+              <div class="totals-row"><span>Taxa</span><span>R$ 0</span></div>
+              <div class="totals-row totals-total"><span>${totalLabel}</span><span>${totalValue}</span></div>
+              ${
+                hasConsult
+                  ? '<div class="totals-row muted">Itens sob consulta não entram no total.</div>'
+                  : ""
+              }
+            </div>
+          </div>
+
+          <div class="footer">
+            <div>
+              <h4>Formas de pagamento</h4>
+              <p>PIX à vista</p>
+              <p>Cartão de crédito (parcelado)</p>
+              <p>Boleto para PJ</p>
+            </div>
+            <div>
+              <h4>Termos e condições</h4>
+              <p>Proposta sujeita a ajustes após alinhamento.</p>
+              <p>Produção inicia após aprovação final.</p>
+            </div>
+            <div>
+              <h4>Contato</h4>
+              <p>${esc(SUPPLIER_INFO.email)}</p>
+              <p>${esc(SUPPLIER_INFO.contact)}</p>
+            </div>
+          </div>
+        `;
+
+        doc.body.appendChild(wrapper);
+
+        setTimeout(() => {
+          popup.focus();
+          popup.print();
+        }, 300);
+      }
+
+      function sendWpp(clientData = null) {
         if (Object.keys(sel).length === 0 && !pkgSel)
           return toast("Selecione itens primeiro");
 
@@ -4375,30 +4967,22 @@
           grupos[c].push({ ...get(id), qty });
         });
 
-        const emojiMap = {
-          criativos: "🎥",
-          organico: "✨",
-          edicao: "✂️",
-          vsl: "📹",
-          lanc: "🚀",
-          consult: "💡",
-          inst: "🏢",
-          evento: "🎉",
-          foto: "📸",
-        };
-
         let msg = "";
 
         if (isAdminMode) {
           // MENSAGEM ADMIN → Produtora enviando para cliente
-          msg = `Olá! 👋\n\n`;
-          msg += `🎬 *ORÇAMENTO AUDIOVISUAL*\n`;
-          msg += `📅 ${dt} • ${hora} • ${itemCount} ${itemCount === 1 ? "item" : "itens"}\n`;
+          msg = `Olá!\n\n`;
+          msg += `*ORÇAMENTO AUDIOVISUAL*\n`;
+          msg += `${dt} • ${hora} • ${itemCount} ${itemCount === 1 ? "item" : "itens"}\n`;
+          if (clientData) {
+            msg += `Cliente: ${clientData.nome || "-"}\n`;
+            if (clientData.email) msg += `Email: ${clientData.email}\n`;
+            if (clientData.contato) msg += `Contato: ${clientData.contato}\n`;
+          }
           msg += `━━━━━━━━━━━━━━━━\n`;
 
           Object.entries(grupos).forEach(([k, itens]) => {
-            const emoji = emojiMap[k] || "📌";
-            msg += `\n${emoji} *${(catName[k] || k).toUpperCase()}*\n`;
+            msg += `\n*${(catName[k] || k).toUpperCase()}*\n`;
             itens.forEach((s) => {
               const subtotal = s.p * s.qty;
               msg += `• ${s.n}`;
@@ -4410,34 +4994,40 @@
           if (pkgSel) {
             const p = PKG.find((x) => x.id === pkgSel);
             if (p) {
-              msg += `\n📦 *PACOTE MENSAL*\n`;
+              msg += `\n*PACOTE MENSAL*\n`;
               msg += `• ${p.n} - R$ ${fmt(p.p)}/mês\n`;
               msg += `${p.eco}\n`;
             }
           }
 
           msg += `\n━━━━━━━━━━━━━━━━\n`;
-          msg += `💵 *TOTAL: R$ ${fmt(total())}*\n`;
+          msg += `*TOTAL: R$ ${fmt(total())}*\n`;
           msg += `━━━━━━━━━━━━━━━━\n\n`;
 
-          msg += `✅ *Próximos passos:*\n`;
+          msg += `*Próximos passos:*\n`;
           msg += `• Análise em até 2h\n`;
           msg += `• Alinhamento do projeto\n`;
           msg += `• Ajustes necessários\n`;
           msg += `• Início da produção\n\n`;
 
-          msg += `💬 Responda para confirmar ou tirar dúvidas!\n`;
-          msg += `🚀 Vamos criar conteúdo de alta performance?`;
+          msg += `Responda para confirmar ou tirar dúvidas.\n`;
+          msg += `Vamos criar conteúdo de alta performance?`;
         } else {
           // MENSAGEM CLIENTE → Cliente solicitando orçamento
-          msg = `Olá! 👋\n\n`;
+          msg = `Olá!\n\n`;
+          if (clientData) {
+            msg += `*Dados para retorno:*\n`;
+            msg += `Nome: ${clientData.nome || "-"}\n`;
+            if (clientData.email) msg += `Email: ${clientData.email}\n`;
+            if (clientData.contato) msg += `Contato: ${clientData.contato}\n`;
+            msg += `\n`;
+          }
           msg += `Gostaria de solicitar um orçamento para os seguintes serviços:\n\n`;
-          msg += `📋 *SERVIÇOS DE INTERESSE*\n`;
+          msg += `*SERVIÇOS DE INTERESSE*\n`;
           msg += `━━━━━━━━━━━━━━━━\n`;
 
           Object.entries(grupos).forEach(([k, itens]) => {
-            const emoji = emojiMap[k] || "📌";
-            msg += `\n${emoji} *${(catName[k] || k).toUpperCase()}*\n`;
+            msg += `\n*${(catName[k] || k).toUpperCase()}*\n`;
             itens.forEach((s) => {
               msg += `• ${s.n}`;
               if (s.qty > 1) msg += ` (${s.qty}x)`;
@@ -4448,17 +5038,17 @@
           if (pkgSel) {
             const p = PKG.find((x) => x.id === pkgSel);
             if (p) {
-              msg += `\n📦 *PACOTE MENSAL*\n`;
+              msg += `\n*PACOTE MENSAL*\n`;
               msg += `• ${p.n}\n`;
             }
           }
 
           msg += `\n━━━━━━━━━━━━━━━━\n`;
-          msg += `📝 Total de ${itemCount} ${itemCount === 1 ? "item" : "itens"} selecionado${itemCount === 1 ? "" : "s"}\n`;
+          msg += `Total de ${itemCount} ${itemCount === 1 ? "item" : "itens"} selecionado${itemCount === 1 ? "" : "s"}\n`;
           msg += `━━━━━━━━━━━━━━━━\n\n`;
 
           msg += `Poderia me enviar um orçamento detalhado?\n\n`;
-          msg += `Aguardo retorno! 😊`;
+          msg += `Aguardo retorno.`;
         }
 
         const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
@@ -4645,6 +5235,13 @@
       document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("filter-todos");
         render();
+        loadInvoiceClientData();
+        ["invoiceClientName", "invoiceClientEmail", "invoiceClientContact"].forEach(
+          (id) => {
+            const input = document.getElementById(id);
+            if (input) input.addEventListener("input", saveInvoiceClientData);
+          },
+        );
         lucide.createIcons();
       });
     </script>
